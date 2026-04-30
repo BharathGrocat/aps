@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Comprehensive Solar Solutions | Apollo Power Systems</title>
+<meta name="description" content="Cut down your electricity bill upto 70% with Apollo Power Systems' comprehensive rooftop solar, ground mount and solar street light solutions. 10+ MW installed capacity." />
+
+<!-- Google Fonts: Roboto -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+
+<!-- Font Awesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+<style>
+    /* =========================================================
+       ROOT VARIABLES — Brand Tokens
+       ========================================================= */
+    :root {
+        --color-primary: #6A055A;        /* Deep brand purple */
+        --color-primary-dark: #4d0341;
+        --color-primary-light: #8a2079;
+        --color-accent: #69BB41;         /* Solar / energy green */
+        --color-accent-dark: #549633;
+        --color-accent-light: #84d65f;
+        --color-white: #FFFFFF;
+        --color-black: #000000;
+        --color-gray-50: #f8f8fa;
+        --color-gray-100: #f1f1f4;
+        --color-gray-200: #e5e5ea;
+        --color-gray-400: #a0a0a8;
+        --color-gray-600: #555560;
+        --color-gray-800: #1f1f24;
+
+        --font-base: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+
+        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+        --shadow-md: 0 6px 24px rgba(0, 0, 0, 0.08);
+        --shadow-lg: 0 16px 48px rgba(106, 5, 90, 0.18);
+
+        --radius-sm: 6px;
+        --radius-md: 12px;
+        --radius-lg: 20px;
+
+        --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+        --container: 1240px;
+    }
+
+    /* =========================================================
+       RESET & BASE
+       ========================================================= */
+    *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+        font-family: var(--font-base);
+        font-weight: 400;
+        line-height: 1.6;
+        color: var(--color-gray-800);
+        background: var(--color-white);
+        overflow-x: hidden;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; color: inherit; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    .container {
+        max-width: var(--container);
+        margin: 0 auto;
+        padding: 0 24px;
+    }
+
+    /* =========================================================
+       BUTTONS
+       ========================================================= */
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 32px;
+        font-weight: 500;
+        font-size: 15px;
+        letter-spacing: 0.3px;
+        border-radius: 50px;
+        transition: var(--transition);
+        cursor: pointer;
+        white-space: nowrap;
+    }
+    .btn-primary {
+        background: var(--color-accent);
+        color: var(--color-white);
+        box-shadow: 0 6px 18px rgba(105, 187, 65, 0.35);
+    }
+    .btn-primary:hover {
+        background: var(--color-accent-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 24px rgba(105, 187, 65, 0.45);
+    }
+    .btn-outline {
+        background: transparent;
+        color: var(--color-white);
+        border: 2px solid var(--color-white);
+    }
+    .btn-outline:hover {
+        background: var(--color-white);
+        color: var(--color-primary);
+    }
+    .btn-dark {
+        background: var(--color-primary);
+        color: var(--color-white);
+    }
+    .btn-dark:hover {
+        background: var(--color-primary-dark);
+        transform: translateY(-2px);
+    }
+
+    /* =========================================================
+       TOP UTILITY BAR
+       ========================================================= */
+    .topbar {
+        background: var(--color-black);
+        color: var(--color-white);
+        font-size: 13px;
+        padding: 8px 0;
+    }
+    .topbar-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    .topbar-info { display: flex; gap: 24px; flex-wrap: wrap; }
+    .topbar-info span i { color: var(--color-accent); margin-right: 6px; }
+    .topbar-social { display: flex; gap: 14px; }
+    .topbar-social a {
+        color: var(--color-white);
+        opacity: 0.85;
+        transition: var(--transition);
+    }
+    .topbar-social a:hover { color: var(--color-accent); opacity: 1; }
+
+    /* =========================================================
+       HEADER / NAV
+       ========================================================= */
+    .header {
+        position: sticky;
+        top: 0;
+        background: var(--color-white);
+        z-index: 1000;
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
+        display: none;
+    }
+    .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 0;
+        gap: 20px;
+    }
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 900;
+        font-size: 22px;
+        color: var(--color-primary);
+        letter-spacing: -0.5px;
+    }
+    .logo-mark {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+        color: var(--color-white);
+        display: grid;
+        place-items: center;
+        font-size: 20px;
+    }
+    .logo small {
+        display: block;
+        font-size: 11px;
+        font-weight: 400;
+        color: var(--color-gray-600);
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+    .nav-list {
+        list-style: none;
+        display: flex;
+        gap: 32px;
+        align-items: center;
+    }
+    .nav-list a {
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--color-gray-800);
+        position: relative;
+        padding: 6px 0;
+        transition: var(--transition);
+    }
+    .nav-list a::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background: var(--color-accent);
+        transition: var(--transition);
+    }
+    .nav-list a:hover, .nav-list a.active { color: var(--color-primary); }
+    .nav-list a:hover::after, .nav-list a.active::after { width: 100%; }
+    .header-cta { display: flex; align-items: center; gap: 16px; }
+    .header-call {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        color: var(--color-primary);
+    }
+    .header-call i {
+        width: 38px;
+        height: 38px;
+        background: var(--color-accent);
+        color: var(--color-white);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+    }
+    .menu-toggle {
+        display: none;
+        font-size: 26px;
+        color: var(--color-primary);
+    }
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+    .hero {
+        position: relative;
+        min-height: 620px;
+        display: flex;
+        align-items: center;
+        background:
+            linear-gradient(135deg, rgba(106, 5, 90, 0.88) 0%, rgba(106, 5, 90, 0.65) 60%, rgba(0, 0, 0, 0.4) 100%),
+            url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1600&auto=format&fit=crop&q=80') center/cover;
+        color: var(--color-white);
+        overflow: hidden;
+    }
+    .hero::after {
+        content: '';
+        position: absolute;
+        right: -120px;
+        bottom: -120px;
+        width: 380px;
+        height: 380px;
+        background: var(--color-accent);
+        border-radius: 50%;
+        opacity: 0.18;
+        filter: blur(20px);
+    }
+    .hero-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 760px;
+        padding: 80px 0;
+    }
+    .hero-tag {
+        display: inline-block;
+        background: rgba(105, 187, 65, 0.2);
+        color: var(--color-accent-light);
+        padding: 8px 18px;
+        border-radius: 50px;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        border: 1px solid rgba(105, 187, 65, 0.4);
+        margin-bottom: 22px;
+    }
+    .hero h1 {
+        font-size: clamp(32px, 5vw, 56px);
+        font-weight: 900;
+        line-height: 1.1;
+        margin-bottom: 18px;
+        letter-spacing: -1.5px;
+    }
+    .hero h1 span { color: var(--color-accent); }
+    .hero p {
+        font-size: 18px;
+        font-weight: 300;
+        opacity: 0.92;
+        margin-bottom: 36px;
+        max-width: 600px;
+    }
+    .hero-stats {
+        display: flex;
+        gap: 40px;
+        flex-wrap: wrap;
+        margin-bottom: 36px;
+        padding-top: 28px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .stat-item {
+        display: flex;
+        flex-direction: column;
+    }
+    .stat-num {
+        font-size: 36px;
+        font-weight: 900;
+        color: var(--color-accent);
+        line-height: 1;
+    }
+    .stat-label {
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        opacity: 0.85;
+        margin-top: 6px;
+    }
+    .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    /* =========================================================
+       SECTION COMMON
+       ========================================================= */
+    .section { padding: 90px 0; }
+    .section-header {
+        text-align: center;
+        max-width: 720px;
+        margin: 0 auto 60px;
+    }
+    .section-eyebrow {
+        display: inline-block;
+        color: var(--color-accent);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+        position: relative;
+        padding: 0 24px;
+    }
+    .section-eyebrow::before, .section-eyebrow::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        width: 16px;
+        height: 2px;
+        background: var(--color-accent);
+    }
+    .section-eyebrow::before { left: 0; }
+    .section-eyebrow::after { right: 0; }
+    .section-title {
+        font-size: clamp(28px, 3.5vw, 42px);
+        font-weight: 900;
+        color: var(--color-primary);
+        line-height: 1.15;
+        letter-spacing: -1px;
+    }
+    .section-title span { color: var(--color-accent); }
+    .section-sub {
+        margin-top: 14px;
+        color: var(--color-gray-600);
+        font-size: 16px;
+    }
+
+    /* =========================================================
+       WE SERVE
+       ========================================================= */
+    .we-serve { background: var(--color-gray-50); }
+    .serve-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+    .serve-card {
+        background: var(--color-white);
+        border-radius: var(--radius-md);
+        padding: 44px 30px;
+        text-align: center;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+        border-top: 4px solid transparent;
+        position: relative;
+        overflow: hidden;
+    }
+    .serve-card::before {
+        content: '';
+        position: absolute;
+        inset: auto -30px -30px auto;
+        width: 120px;
+        height: 120px;
+        background: var(--color-gray-100);
+        border-radius: 50%;
+        transition: var(--transition);
+        z-index: 0;
+    }
+    .serve-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-md);
+        border-top-color: var(--color-accent);
+    }
+    .serve-card:hover::before {
+        background: rgba(105, 187, 65, 0.12);
+        transform: scale(1.4);
+    }
+    .serve-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+        color: var(--color-white);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        margin: 0 auto 22px;
+        font-size: 32px;
+        position: relative;
+        z-index: 1;
+        transition: var(--transition);
+    }
+    .serve-card:hover .serve-icon {
+        background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+        transform: rotate(360deg);
+    }
+    .serve-card h3 {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--color-primary);
+        margin-bottom: 8px;
+        position: relative;
+        z-index: 1;
+    }
+    .serve-card p {
+        color: var(--color-gray-600);
+        font-size: 14px;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* =========================================================
+       OFFERINGS
+       ========================================================= */
+    .offerings-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+    }
+    .offer-card {
+        position: relative;
+        background: var(--color-white);
+        border-radius: var(--radius-md);
+        padding: 40px 32px 36px;
+        border: 1px solid var(--color-gray-200);
+        transition: var(--transition);
+        overflow: hidden;
+    }
+    .offer-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: var(--color-accent);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.5s ease;
+    }
+    .offer-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-6px); }
+    .offer-card:hover::before { transform: scaleX(1); }
+    .offer-num {
+        font-size: 64px;
+        font-weight: 900;
+        color: var(--color-gray-100);
+        line-height: 1;
+        position: absolute;
+        top: 24px;
+        right: 28px;
+        transition: var(--transition);
+    }
+    .offer-card:hover .offer-num { color: rgba(105, 187, 65, 0.18); }
+    .offer-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: var(--radius-sm);
+        background: rgba(106, 5, 90, 0.08);
+        color: var(--color-primary);
+        display: grid;
+        place-items: center;
+        font-size: 28px;
+        margin-bottom: 26px;
+        transition: var(--transition);
+    }
+    .offer-card:hover .offer-icon {
+        background: var(--color-primary);
+        color: var(--color-white);
+    }
+    .offer-card h3 {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--color-black);
+        margin-bottom: 8px;
+    }
+    .offer-card .offer-tag {
+        font-size: 13px;
+        color: var(--color-accent-dark);
+        font-weight: 500;
+        margin-bottom: 14px;
+    }
+    .offer-card p {
+        color: var(--color-gray-600);
+        font-size: 14px;
+        margin-bottom: 22px;
+    }
+    .offer-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--color-primary);
+        font-weight: 600;
+        font-size: 14px;
+        transition: var(--transition);
+    }
+    .offer-link:hover { color: var(--color-accent); gap: 14px; }
+
+    /* =========================================================
+       EXPERTISE — Process / Steps
+       ========================================================= */
+    .expertise {
+        background: linear-gradient(135deg, #fafafa 0%, #f4f1f5 100%);
+        position: relative;
+        overflow: hidden;
+    }
+    .expertise::before {
+        content: '';
+        position: absolute;
+        top: -100px;
+        left: -100px;
+        width: 280px;
+        height: 280px;
+        background: radial-gradient(circle, rgba(106, 5, 90, 0.08), transparent 70%);
+        border-radius: 50%;
+    }
+    .expertise-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 18px;
+        position: relative;
+    }
+    .step-card {
+        background: var(--color-white);
+        border-radius: var(--radius-md);
+        padding: 36px 22px 28px;
+        text-align: center;
+        position: relative;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+    }
+    .step-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-md);
+    }
+    .step-number {
+        position: absolute;
+        top: -18px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 36px;
+        height: 36px;
+        background: var(--color-accent);
+        color: var(--color-white);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-weight: 700;
+        font-size: 14px;
+        box-shadow: 0 4px 12px rgba(105, 187, 65, 0.45);
+    }
+    .step-icon {
+        width: 64px;
+        height: 64px;
+        margin: 8px auto 18px;
+        background: linear-gradient(135deg, rgba(106, 5, 90, 0.08), rgba(105, 187, 65, 0.08));
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-size: 26px;
+        color: var(--color-primary);
+        transition: var(--transition);
+    }
+    .step-card:hover .step-icon {
+        background: var(--color-primary);
+        color: var(--color-white);
+    }
+    .step-card h4 {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--color-primary);
+        margin-bottom: 10px;
+        line-height: 1.3;
+    }
+    .step-card p {
+        font-size: 13px;
+        color: var(--color-gray-600);
+        line-height: 1.5;
+    }
+
+    /* =========================================================
+       CAPABILITIES
+       ========================================================= */
+    .capabilities-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 26px;
+    }
+    .cap-card {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+        padding: 28px;
+        background: var(--color-white);
+        border-radius: var(--radius-md);
+        border: 1px solid var(--color-gray-200);
+        transition: var(--transition);
+    }
+    .cap-card:hover {
+        border-color: var(--color-accent);
+        box-shadow: var(--shadow-md);
+        transform: translateY(-4px);
+    }
+    .cap-icon {
+        flex-shrink: 0;
+        width: 56px;
+        height: 56px;
+        background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+        color: var(--color-white);
+        border-radius: var(--radius-sm);
+        display: grid;
+        place-items: center;
+        font-size: 22px;
+        transition: var(--transition);
+    }
+    .cap-card:hover .cap-icon {
+        background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+    }
+    .cap-card h4 {
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--color-black);
+        margin-bottom: 6px;
+        line-height: 1.3;
+    }
+    .cap-card p {
+        font-size: 13px;
+        color: var(--color-gray-600);
+        line-height: 1.5;
+    }
+
+    /* =========================================================
+       CTA BANNER
+       ========================================================= */
+    .cta-banner {
+        background:
+            linear-gradient(135deg, rgba(106, 5, 90, 0.94), rgba(106, 5, 90, 0.85)),
+            url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1600&auto=format&fit=crop&q=80') center/cover;
+        padding: 70px 0;
+        color: var(--color-white);
+        position: relative;
+        overflow: hidden;
+    }
+    .cta-banner::before {
+        content: '';
+        position: absolute;
+        right: -80px;
+        top: -80px;
+        width: 260px;
+        height: 260px;
+        border: 30px solid rgba(105, 187, 65, 0.15);
+        border-radius: 50%;
+    }
+    .cta-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 40px;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+    }
+    .cta-text h2 {
+        font-size: clamp(24px, 3vw, 36px);
+        font-weight: 900;
+        margin-bottom: 10px;
+        letter-spacing: -0.5px;
+    }
+    .cta-text p { opacity: 0.9; font-size: 16px; }
+
+    /* =========================================================
+       CLIENT STORIES
+       ========================================================= */
+    .stories-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+    }
+    .story-card {
+        background: var(--color-white);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+    }
+    .story-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .story-img {
+        height: 220px;
+        background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+        display: grid;
+        place-items: center;
+        color: var(--color-white);
+        font-size: 56px;
+        position: relative;
+        overflow: hidden;
+    }
+    .story-img::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.2);
+    }
+    .story-img i { position: relative; z-index: 1; }
+    .story-body { padding: 26px; }
+    .story-tag {
+        display: inline-block;
+        background: rgba(105, 187, 65, 0.12);
+        color: var(--color-accent-dark);
+        padding: 4px 12px;
+        font-size: 12px;
+        border-radius: 50px;
+        font-weight: 500;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .story-card h3 {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--color-black);
+        margin-bottom: 14px;
+        line-height: 1.4;
+    }
+    .story-card a {
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--color-primary);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: var(--transition);
+    }
+    .story-card a:hover { color: var(--color-accent); gap: 12px; }
+
+    /* =========================================================
+       TRUSTED BY
+       ========================================================= */
+    .trusted { background: var(--color-gray-50); padding: 70px 0; }
+    .trusted-title {
+        text-align: center;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        color: var(--color-gray-600);
+        margin-bottom: 36px;
+        font-weight: 500;
+    }
+    .trusted-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 20px;
+    }
+    .trusted-logo {
+        background: var(--color-white);
+        border-radius: var(--radius-sm);
+        padding: 22px 16px;
+        display: grid;
+        place-items: center;
+        height: 80px;
+        font-weight: 700;
+        color: var(--color-gray-400);
+        font-size: 13px;
+        border: 1px solid var(--color-gray-200);
+        transition: var(--transition);
+        text-align: center;
+    }
+    .trusted-logo:hover {
+        color: var(--color-primary);
+        border-color: var(--color-accent);
+        box-shadow: var(--shadow-sm);
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+    .footer {
+        background: var(--color-black);
+        color: var(--color-white);
+        padding: 70px 0 0;
+        display: none;
+    }
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr 1fr;
+        gap: 40px;
+        padding-bottom: 50px;
+    }
+    .footer-brand p {
+        opacity: 0.7;
+        font-size: 14px;
+        margin: 16px 0 22px;
+        line-height: 1.7;
+    }
+    .footer-social { display: flex; gap: 12px; }
+    .footer-social a {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--color-white);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        transition: var(--transition);
+    }
+    .footer-social a:hover {
+        background: var(--color-accent);
+        transform: translateY(-3px);
+    }
+    .footer h4 {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 22px;
+        position: relative;
+        padding-bottom: 12px;
+    }
+    .footer h4::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 36px;
+        height: 2px;
+        background: var(--color-accent);
+    }
+    .footer-list { list-style: none; }
+    .footer-list li { margin-bottom: 10px; }
+    .footer-list a {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 14px;
+        transition: var(--transition);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .footer-list a:hover { color: var(--color-accent); padding-left: 4px; }
+    .footer-list a i { font-size: 10px; color: var(--color-accent); }
+    .footer-contact-item {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 14px;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.8);
+    }
+    .footer-contact-item i {
+        color: var(--color-accent);
+        margin-top: 4px;
+    }
+    .footer-bottom {
+        padding: 22px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.6);
+    }
+    .footer-bottom a { color: var(--color-accent); }
+
+    /* =========================================================
+       FLOATING ACTIONS
+       ========================================================= */
+    .floating-actions {
+        position: fixed;
+        right: 22px;
+        bottom: 22px;
+        z-index: 999;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+    .float-btn {
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        color: var(--color-white);
+        font-size: 22px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        transition: var(--transition);
+    }
+    .float-btn.whatsapp { background: #25D366; }
+    .float-btn.call { background: var(--color-accent); animation: pulse 2s infinite; }
+    .float-btn:hover { transform: scale(1.08); }
+
+    @keyframes pulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(105, 187, 65, 0.7); }
+        50% { box-shadow: 0 0 0 14px rgba(105, 187, 65, 0); }
+    }
+
+    /* =========================================================
+       SCROLL ANIMATIONS
+       ========================================================= */
+    .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+    @media (max-width: 1024px) {
+        .expertise-grid { grid-template-columns: repeat(3, 1fr); }
+        .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 820px) {
+        .nav-list { display: none; }
+        .menu-toggle { display: block; }
+        .topbar-info { display: none; }
+        .serve-grid, .offerings-grid, .capabilities-grid, .stories-grid {
+            grid-template-columns: 1fr;
+        }
+        .expertise-grid { grid-template-columns: repeat(2, 1fr); }
+        .trusted-grid { grid-template-columns: repeat(3, 1fr); }
+        .hero { min-height: 540px; }
+        .hero-stats { gap: 24px; }
+        .stat-num { font-size: 28px; }
+        .section { padding: 70px 0; }
+        .section-header { margin-bottom: 40px; }
+        .header-call .call-text { display: none; }
+    }
+    @media (max-width: 480px) {
+        .expertise-grid { grid-template-columns: 1fr; }
+        .trusted-grid { grid-template-columns: repeat(2, 1fr); }
+        .hero-cta { flex-direction: column; align-items: flex-start; }
+        .hero-cta .btn { width: 100%; justify-content: center; }
+    }
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     TOP BAR
+     ========================================================= -->
+<div class="topbar">
+    <div class="container topbar-inner">
+        <div class="topbar-info">
+            <span><i class="fas fa-envelope"></i> info@apollopowersystems.com</span>
+            <span><i class="fas fa-map-marker-alt"></i> Bangalore | Chennai | Hyderabad | Mumbai</span>
+        </div>
+        <div class="topbar-social">
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+    </div>
+</div>
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+<header class="header">
+    <div class="container header-inner">
+        <a href="/" class="logo">
+            <span class="logo-mark"><i class="fas fa-bolt"></i></span>
+            <span>
+                APOLLO
+                <small>Power Systems</small>
+            </span>
+        </a>
+        <nav>
+            <ul class="nav-list">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Generators</a></li>
+                <li><a href="#" class="active">Solar Solutions</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-cta">
+            <a href="tel:+919591073031" class="header-call">
+                <i class="fas fa-phone"></i>
+                <span class="call-text">+91 95910 73031</span>
+            </a>
+            <a href="#calculator" class="btn btn-primary">Get Quote</a>
+            <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+        </div>
+    </div>
+</header>
+
+<!-- =========================================================
+     HERO
+     ========================================================= -->
+<section class="hero">
+    <div class="container hero-inner">
+        <span class="hero-tag">Sustainable Energy Solutions</span>
+        <h1>Cut Your Electricity Bill <span>Up to 70%</span> with Rooftop Solar</h1>
+        <p>Comprehensive solar EPC services — from site survey and engineering to installation, statutory approvals and lifetime maintenance.</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="stat-num">10+ MW</div>
+                <div class="stat-label">Total Installed Capacity</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">500+</div>
+                <div class="stat-label">Projects Delivered</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">25+</div>
+                <div class="stat-label">Years of Expertise</div>
+            </div>
+        </div>
+        <div class="hero-cta">
+            <a href="#calculator" class="btn btn-primary">
+                <i class="fas fa-calculator"></i> Calculate Your Savings
+            </a>
+            <a href="#offerings" class="btn btn-outline">
+                Explore Solutions <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================
+     WE SERVE
+     ========================================================= -->
+<section class="section we-serve">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-eyebrow">Industries We Power</span>
+            <h2 class="section-title">We <span>Serve</span></h2>
+            <p class="section-sub">Tailored solar energy solutions across every sector — built for performance, longevity and savings.</p>
+        </div>
+        <div class="serve-grid">
+            <div class="serve-card reveal">
+                <div class="serve-icon"><i class="fas fa-industry"></i></div>
+                <h3>Industries</h3>
+                <p>Manufacturing, factories, warehouses and large industrial campuses with high-load solar PV plants.</p>
+            </div>
+            <div class="serve-card reveal">
+                <div class="serve-icon"><i class="fas fa-building"></i></div>
+                <h3>Commercial Properties</h3>
+                <p>Office complexes, retail malls, hotels and tech parks — engineered for maximum ROI.</p>
+            </div>
+            <div class="serve-card reveal">
+                <div class="serve-icon"><i class="fas fa-home"></i></div>
+                <h3>Residential & Communities</h3>
+                <p>Independent villas, apartments and gated communities — including high-rise rooftop installations.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================
+     OUR OFFERINGS
+     ========================================================= -->
+<section class="section" id="offerings">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-eyebrow">What We Offer</span>
+            <h2 class="section-title">Our <span>Offerings</span></h2>
+            <p class="section-sub">Engineered solar systems designed and installed by certified experts.</p>
+        </div>
+        <div class="offerings-grid">
+            <div class="offer-card reveal">
+                <div class="offer-num">01</div>
+                <div class="offer-icon"><i class="fas fa-solar-panel"></i></div>
+                <h3>Rooftop Solar</h3>
+                <div class="offer-tag">On-grid &nbsp;•&nbsp; Off-grid &nbsp;•&nbsp; Hybrid</div>
+                <p>Complete rooftop solar PV systems with smart monitoring, net metering integration and zero-loss design.</p>
+                <a href="#" class="offer-link">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="offer-card reveal">
+                <div class="offer-num">02</div>
+                <div class="offer-icon"><i class="fas fa-mountain-sun"></i></div>
+                <h3>Solar Ground Mount</h3>
+                <div class="offer-tag">Utility-Scale &nbsp;•&nbsp; Captive Plants</div>
+                <p>Large-scale ground mount solar PV plants engineered for maximum land utilization and energy yield.</p>
+                <a href="#" class="offer-link">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="offer-card reveal">
+                <div class="offer-num">03</div>
+                <div class="offer-icon"><i class="fas fa-lightbulb"></i></div>
+                <h3>Solar Street Light</h3>
+                <div class="offer-tag">All-in-One &nbsp;•&nbsp; Two-in-One</div>
+                <p>Standalone solar LED street lighting systems for highways, campuses, parks and rural electrification.</p>
+                <a href="#" class="offer-link">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================
+     EXPERTISE
+     ========================================================= -->
+<section class="section expertise">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-eyebrow">End-to-End EPC</span>
+            <h2 class="section-title">Our <span>Expertise In</span></h2>
+            <p class="section-sub">A turnkey 5-step process — from concept to commissioning and beyond.</p>
+        </div>
+        <div class="expertise-grid">
+            <div class="step-card reveal">
+                <div class="step-number">1</div>
+                <div class="step-icon"><i class="fas fa-map-location-dot"></i></div>
+                <h4>Site Survey</h4>
+                <p>Detailed 3D Simulation report &amp; Shadow Area Analysis.</p>
+            </div>
+            <div class="step-card reveal">
+                <div class="step-number">2</div>
+                <div class="step-icon"><i class="fas fa-pencil-ruler"></i></div>
+                <h4>Design &amp; Engineering</h4>
+                <p>Foundation Construction, Supports &amp; Mounts Installation.</p>
+            </div>
+            <div class="step-card reveal">
+                <div class="step-number">3</div>
+                <div class="step-icon"><i class="fas fa-tools"></i></div>
+                <h4>Supply, Install &amp; Test</h4>
+                <p>Complete the Setup, System Activation &amp; Testing.</p>
+            </div>
+            <div class="step-card reveal">
+                <div class="step-number">4</div>
+                <div class="step-icon"><i class="fas fa-file-signature"></i></div>
+                <h4>Statutory Approvals</h4>
+                <p>Obtaining Govt. Approvals &amp; Documentation.</p>
+            </div>
+            <div class="step-card reveal">
+                <div class="step-number">5</div>
+                <div class="step-icon"><i class="fas fa-shield-halved"></i></div>
+                <h4>Maintenance</h4>
+                <p>Monthly &amp; Yearly Reports, Assistance with Upkeep.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================
+     CTA BANNER
+     ========================================================= -->
+<section class="cta-banner" id="calculator">
+    <div class="container cta-inner">
+        <div class="cta-text">
+            <h2>Ready to Switch to Clean, Affordable Solar?</h2>
+            <p>Get a free site assessment and a customized savings report within 24 hours.</p>
+        </div>
+        <div>
+            <a href="#" class="btn btn-primary"><i class="fas fa-calculator"></i> Solar Calculator</a>
+            <a href="tel:+919591073031" class="btn btn-outline"><i class="fas fa-phone"></i> Talk to Expert</a>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================
+     CAPABILITIES
+     ========================================================= -->
+<section class="section">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-eyebrow">Why Apollo</span>
+            <h2 class="section-title">Our Solar Project <span>Capabilities</span></h2>
+            <p class="section-sub">Compliance, quality and execution excellence — what makes us the preferred Solar EPC partner.</p>
+        </div>
+        <div class="capabilities-grid">
+            <div class="cap-card reveal">
+                <div class="cap-icon"><i class="fas fa-leaf"></i></div>
+                <div>
+                    <h4>EHS Compliance</h4>
+                    <p>Completed Green Banding Process for Shell India.</p>
+                </div>
+            </div>
+            <div class="cap-card reveal">
+                <div class="cap-icon"><i class="fas fa-handshake"></i></div>
+                <div>
+                    <h4>Authorized DISCOM Vendor</h4>
+                    <p>MNRE Channel Partner across multiple states.</p>
+                </div>
+            </div>
+            <div class="cap-card reveal">
+                <div class="cap-icon"><i class="fas fa-award"></i></div>
+                <div>
+                    <h4>Quality Assured</h4>
+                    <p>ISO 9001:2015 certified — focus on QA/QC at every step.</p>
+                </div>
+            </div>
+            <div class="cap-card reveal">
+                <div class="cap-icon"><i class="fas fa-screwdriver-wrench"></i></div>
+                <div>
+                    <h4>Free Maintenance</h4>
+                    <p>Complimentary maintenance plan with every installation.</p>
+                </div>
+            </div>
+            <div class="cap-card reveal">
+                <div class="cap-icon"><i class="fas fa-cubes-stacked"></i></div>
+                <div>
+                    <h4>One-Stop Shop</h4>
+                    <p>From design to support services — all under one roof.</p>
+                </div>
+            </div>
+            <div class="cap-card reveal">
+                <div class="cap-icon"><i class="fas fa-building-circle-arrow-right"></i></div>
+                <div>
+                    <h4>High-Rise Specialists</h4>
+                    <p>Experts in installations on buildings 25+ floors high.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================
+     CLIENT STORIES
+     ========================================================= -->
+<section class="section we-serve">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-eyebrow">Case Studies</span>
+            <h2 class="section-title">Client <span>Stories</span></h2>
+            <p class="section-sub">Real outcomes from real partnerships across industries.</p>
+        </div>
+        <div class="stories-grid">
+            <div class="story-card reveal">
+                <div class="story-img"><i class="fas fa-solar-panel"></i></div>
+                <div class="story-body">
+                    <span class="story-tag">Real Estate</span>
+                    <h3>Preferred Solar Partner for Prestige Projects</h3>
+                    <a href="#">Read more <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="story-card reveal">
+                <div class="story-img"><i class="fas fa-plane-departure"></i></div>
+                <div class="story-body">
+                    <span class="story-tag">Aviation</span>
+                    <h3>Preferred Partner for Airports Across India</h3>
+                    <a href="#">Read more <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="story-card reveal">
+                <div class="story-img"><i class="fas fa-laptop-code"></i></div>
+                <div class="story-body">
+                    <span class="story-tag">Tech &amp; Sustainability</span>
+                    <h3>Powering Google with Sustainable Energy &amp; FMS</h3>
+                    <a href="#">Read more <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================
+     TRUSTED BY
+     ========================================================= -->
+<section class="trusted">
+    <div class="container">
+        <p class="trusted-title">Trusted by 500+ Industry Leaders</p>
+        <div class="trusted-grid">
+            <div class="trusted-logo">PRESTIGE</div>
+            <div class="trusted-logo">GODREJ</div>
+            <div class="trusted-logo">GOOGLE</div>
+            <div class="trusted-logo">ITC HOTELS</div>
+            <div class="trusted-logo">SHELL</div>
+            <div class="trusted-logo">ADCOCK</div>
+            <div class="trusted-logo">TAL</div>
+            <div class="trusted-logo">BIAL</div>
+            <div class="trusted-logo">INFOSYS</div>
+            <div class="trusted-logo">WIPRO</div>
+            <div class="trusted-logo">TATA</div>
+            <div class="trusted-logo">RELIANCE</div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="/" class="logo" style="color:#fff;">
+                    <span class="logo-mark"><i class="fas fa-bolt"></i></span>
+                    <span>APOLLO <small style="color:rgba(255,255,255,0.7);">Power Systems</small></span>
+                </a>
+                <p>India's trusted Solar EPC contractor — delivering rooftop, ground mount and street lighting solar solutions with 25+ years of engineering excellence.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4>Company</h4>
+                <ul class="footer-list">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Projects</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Blogs</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Client Stories</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Solutions</h4>
+                <ul class="footer-list">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Solar PV Projects</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Diesel Generators</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Gas Generators</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> MEP Projects</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Turnkey Electrical</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Facility Management</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Get In Touch</h4>
+                <div class="footer-contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>+91 95910 73031<br/><span style="opacity:0.6;font-size:12px;">Sales &amp; Job Inquiries</span></div>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>info@apollopowersystems.com</div>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fas fa-location-dot"></i>
+                    <div>Karnataka • Tamil Nadu • Telangana<br/>Andhra Pradesh • Maharashtra • Delhi</div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 <a href="#">Apollo Power Systems</a>. All rights reserved.&nbsp;&nbsp;|&nbsp;&nbsp;Privacy Policy&nbsp;&nbsp;|&nbsp;&nbsp;Terms of Service
+        </div>
+    </div>
+</footer>
+
+<!-- =========================================================
+     FLOATING ACTIONS
+     ========================================================= -->
+<div class="floating-actions">
+    <a href="https://wa.me/919591073031" class="float-btn whatsapp" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="tel:+919591073031" class="float-btn call" aria-label="Call">
+        <i class="fas fa-phone"></i>
+    </a>
+</div>
+
+<!-- =========================================================
+     SCROLL REVEAL
+     ========================================================= -->
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => entry.target.classList.add('visible'), i * 80);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Sticky header shrink
+    const header = document.querySelector('.header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 60) {
+            header.style.padding = '4px 0';
+            header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.08)';
+        } else {
+            header.style.padding = '0';
+        }
+    });
+</script>
+
+</body>
+</html>
