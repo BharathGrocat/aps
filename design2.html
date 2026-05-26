@@ -1,0 +1,2990 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apollo Power Systems – Service Page Template</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ── APOLLO BRAND TOKENS ── */
+    :root {
+      --nav-bg: #0a0a0a;
+      --nav-text: #ffffff;
+      --green: #0FAD4B;
+      --green-dark: #0a8a3a;
+      --green-light: #e6f7ec;
+      --green-mid: #b9eac9;
+      --purple: #6A055A;
+      --purple-hover: #50043f;
+      --white: #ffffff;
+      --off-white: #f8f9fb;
+      --body-bg: #ffffff;
+      --text-dark: #111827;
+      --text-mid: #374151;
+      --text-light: #6b7280;
+      --text-xlight: #9ca3af;
+      --border: #e5e7eb;
+      --border-dark: #d1d5db;
+      --card-bg: #ffffff;
+      --section-alt: #f8f9fb;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1);
+      --radius: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+      --font-sans: 'Inter', sans-serif;
+      --font-display: 'Sora', sans-serif;
+    }
+
+    /* ── RESET ── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--body-bg);
+      color: var(--text-dark);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* ── PREVIEW SWITCHER (remove in production) ── */
+    .preview-switcher {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: #1e1b4b;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 10px 48px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .preview-switcher span {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-right: 6px;
+      font-family: var(--font-sans);
+    }
+
+    .sw-btn {
+      padding: 6px 16px;
+      border-radius: 100px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: transparent;
+      color: rgba(255, 255, 255, 0.6);
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .sw-btn:hover {
+      border-color: var(--green);
+      color: var(--green);
+    }
+
+    .sw-btn.on {
+      background: var(--green);
+      border-color: var(--green);
+      color: #fff;
+    }
+
+    .sw-note {
+      margin-left: auto;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.25);
+      font-family: var(--font-sans);
+    }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      background: var(--green);
+      padding: 7px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .topbar-left {
+      font-size: 12px;
+      color: #fff;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .topbar-left span::before {
+      content: '✓ ';
+    }
+
+    .topbar-right {
+      font-size: 12px;
+      color: #fff;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      background: var(--nav-bg);
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-logo img {
+      height: 42px;
+      width: auto;
+    }
+
+    .nav-logo-placeholder {
+      height: 42px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-icon svg {
+      width: 38px;
+      height: 38px;
+    }
+
+    .logo-wordmark {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-wordmark strong {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.2px;
+      line-height: 1.1;
+    }
+
+    .logo-wordmark small {
+      font-size: 9px;
+      color: rgba(255, 255, 255, 0.4);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .nav-link {
+      padding: 8px 14px;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 13.5px;
+      font-weight: 500;
+      border-radius: 5px;
+      transition: all .2s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-link.active {
+      color: #fff;
+    }
+
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 14px;
+      right: 14px;
+      height: 2px;
+      background: var(--green);
+      border-radius: 2px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-phone {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 500;
+      padding: 7px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 6px;
+    }
+
+    .nav-phone:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .nav-cta {
+      background: var(--purple);
+      color: #fff;
+      padding: 9px 20px;
+      border-radius: 6px;
+      font-size: 13.5px;
+      font-weight: 600;
+      transition: background .2s, transform .15s;
+    }
+
+    .nav-cta:hover {
+      background: var(--purple-hover);
+      transform: translateY(-1px);
+    }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      background: var(--off-white);
+      padding: 12px 48px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0;
+      font-size: 12.5px;
+      color: var(--text-light);
+    }
+
+    .breadcrumb a {
+      color: var(--text-light);
+    }
+
+    .breadcrumb a:hover {
+      color: var(--green);
+    }
+
+    .breadcrumb .sep {
+      margin: 0 8px;
+      color: var(--border-dark);
+    }
+
+    .breadcrumb .curr {
+      color: var(--green);
+      font-weight: 500;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--nav-bg);
+      min-height: 500px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(255, 255, 255, .03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .03) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    .hero-content {
+      padding: 72px 48px 72px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(15, 173, 75, 0.12);
+      border: 1px solid rgba(15, 173, 75, 0.35);
+      border-radius: 100px;
+      padding: 5px 14px 5px 8px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 24px;
+      width: fit-content;
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: .5;
+      }
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4.5vw, 58px);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 .accent {
+      color: var(--green);
+    }
+
+    .hero-sub {
+      font-size: 15.5px;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.75;
+      max-width: 480px;
+      margin-bottom: 36px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-green {
+      background: var(--green);
+      color: #fff;
+      padding: 13px 26px;
+      border-radius: 7px;
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background .2s, transform .15s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-green:hover {
+      background: var(--green-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: rgba(255, 255, 255, 0.8);
+      padding: 12px 22px;
+      border-radius: 7px;
+      font-size: 14px;
+      font-weight: 500;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all .2s;
+      cursor: pointer;
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(255, 255, 255, 0.4);
+      color: #fff;
+    }
+
+    .btn-purple {
+      background: var(--purple);
+      color: #fff;
+      padding: 13px 26px;
+      border-radius: 7px;
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background .2s, transform .15s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-purple:hover {
+      background: var(--purple-hover);
+      transform: translateY(-1px);
+    }
+
+    .hero-trust {
+      margin-top: 40px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    .trust-icon {
+      width: 32px;
+      height: 32px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .trust-item span strong {
+      display: block;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 12.5px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .hero-visual {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .hero-img-box {
+      flex: 1;
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+    }
+
+    .hero-img-box::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 60px;
+      background: linear-gradient(90deg, var(--nav-bg), transparent);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .img-placeholder-icon {
+      width: 56px;
+      height: 56px;
+      border: 1.5px dashed rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .img-hint {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.25);
+      text-align: center;
+      max-width: 140px;
+      line-height: 1.6;
+    }
+
+    .hero-stats-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 3;
+      background: rgba(10, 10, 10, 0.82);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 14px 24px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+
+    .hs-item {
+      text-align: center;
+      padding: 4px 12px;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hs-item:last-child {
+      border-right: none;
+    }
+
+    .hs-num {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--green);
+      line-height: 1;
+    }
+
+    .hs-label {
+      font-size: 10.5px;
+      color: rgba(255, 255, 255, 0.45);
+      margin-top: 2px;
+      letter-spacing: 0.3px;
+    }
+
+    /* ── STATS BAND ── */
+    .stats-band {
+      background: var(--nav-bg);
+      padding: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .stats-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .stat-cell {
+      padding: 28px 32px;
+      text-align: center;
+      border-right: 1px solid rgba(255, 255, 255, 0.07);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .stat-cell:last-child {
+      border-right: none;
+    }
+
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 42px;
+      font-weight: 800;
+      color: var(--green);
+      line-height: 1;
+    }
+
+    .stat-suf {
+      font-size: 24px;
+    }
+
+    .stat-lbl {
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, 0.55);
+      margin-top: 5px;
+      font-weight: 400;
+    }
+
+    /* ── SECTIONS ── */
+    .sec {
+      padding: 84px 48px;
+    }
+
+    .sec-alt {
+      background: var(--section-alt);
+    }
+
+    .sec-white {
+      background: var(--white);
+    }
+
+    .sec-dark {
+      background: #0f1117;
+    }
+
+    .sec-green {
+      background: var(--green);
+    }
+
+    .sec-tag {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+
+    .sec-tag.on-dark {
+      color: var(--green);
+    }
+
+    .sec-tag.on-green {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .sec-h {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 800;
+      color: var(--text-dark);
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      margin-bottom: 14px;
+    }
+
+    .sec-h.on-dark {
+      color: #fff;
+    }
+
+    .sec-h.on-green {
+      color: #fff;
+    }
+
+    .sec-h .accent {
+      color: var(--green);
+    }
+
+    .sec-h.on-green .accent {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .sec-sub {
+      font-size: 15px;
+      color: var(--text-light);
+      line-height: 1.75;
+      max-width: 560px;
+    }
+
+    .sec-sub.on-dark {
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    .sec-head {
+      margin-bottom: 52px;
+    }
+
+    .sec-head-center {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+
+    .sec-head-center .sec-sub {
+      margin: 0 auto;
+    }
+
+    .divider-line {
+      width: 36px;
+      height: 3px;
+      background: var(--green);
+      border-radius: 2px;
+      margin: 16px 0 0;
+    }
+
+    .divider-line.on-green {
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    /* ── TWO-COL ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .two-col.center {
+      align-items: center;
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .four-col {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    /* ── OFFERING CARDS ── */
+    .offer-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: box-shadow .25s, transform .2s, border-color .2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .offer-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--green);
+      transform: scaleX(0);
+      transition: transform .3s;
+      transform-origin: left;
+    }
+
+    .offer-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+      border-color: var(--border-dark);
+    }
+
+    .offer-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .oc-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--green-light);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .oc-title {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+    }
+
+    .oc-text {
+      font-size: 13.5px;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    .oc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 16px;
+    }
+
+    .oc-link::after {
+      content: '→';
+      transition: transform .15s;
+    }
+
+    .oc-link:hover::after {
+      transform: translateX(3px);
+    }
+
+    /* ── OVERVIEW SECTION ── */
+    .overview-body p {
+      font-size: 15px;
+      color: var(--text-mid);
+      line-height: 1.85;
+      margin-bottom: 18px;
+    }
+
+    .check-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      margin-top: 24px;
+    }
+
+    .check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.55;
+    }
+
+    .check-icon-wrap {
+      width: 20px;
+      height: 20px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .check-icon-wrap::after {
+      content: '✓';
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .stat-sidebar {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .ss-header {
+      background: var(--nav-bg);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ss-header-title {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .ss-header-sub {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.45);
+      margin-top: 1px;
+    }
+
+    .ss-body {
+      padding: 8px 0;
+    }
+
+    .ss-stat {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .ss-stat:last-child {
+      border-bottom: none;
+    }
+
+    .ss-num {
+      font-family: var(--font-display);
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--green);
+      min-width: 80px;
+      line-height: 1;
+    }
+
+    .ss-label {
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.4;
+    }
+
+    .ss-label strong {
+      display: block;
+      color: var(--text-dark);
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+
+    /* ── PROCESS ── */
+    .process-wrap {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      position: relative;
+      gap: 0;
+      counter-reset: step;
+    }
+
+    .process-wrap::after {
+      content: '';
+      position: absolute;
+      top: 30px;
+      left: calc(10% + 24px);
+      right: calc(10% + 24px);
+      height: 1px;
+      background: var(--green-mid);
+      z-index: 0;
+    }
+
+    .proc-step {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 0 12px;
+    }
+
+    .proc-num {
+      width: 60px;
+      height: 60px;
+      background: var(--white);
+      border: 2px solid var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--green);
+      transition: background .2s, color .2s;
+      box-shadow: 0 0 0 6px var(--white);
+    }
+
+    .proc-step:hover .proc-num {
+      background: var(--green);
+      color: #fff;
+    }
+
+    .proc-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .proc-desc {
+      font-size: 12px;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    /* ── WHY CARDS ── */
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .why-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 28px 24px;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      transition: box-shadow .2s, transform .2s;
+    }
+
+    .why-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .why-num-badge {
+      font-family: var(--font-display);
+      font-size: 40px;
+      font-weight: 800;
+      color: var(--green);
+      opacity: 0.18;
+      line-height: 1;
+      flex-shrink: 0;
+      width: 50px;
+    }
+
+    .why-body {}
+
+    .why-title {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .why-text {
+      font-size: 13.5px;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* ── INDUSTRIES GRID ── */
+    .ind-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .ind-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-mid);
+      transition: all .2s;
+    }
+
+    .ind-card:hover {
+      border-color: var(--green);
+      color: var(--text-dark);
+      background: var(--green-light);
+    }
+
+    .ind-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    /* ── PRODUCT TABLE ── */
+    .product-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+
+    .product-table th {
+      background: var(--nav-bg);
+      color: rgba(255, 255, 255, 0.75);
+      font-weight: 600;
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--green);
+    }
+
+    .product-table td {
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-mid);
+    }
+
+    .product-table tr:hover td {
+      background: var(--green-light);
+    }
+
+    .product-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .product-table td:first-child {
+      font-weight: 500;
+      color: var(--text-dark);
+    }
+
+    .product-table .kva {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--green);
+    }
+
+    .table-wrap {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ── BRAND CARDS ── */
+    .brand-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .brand-card {
+      background: var(--nav-bg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: transform .2s, border-color .2s;
+    }
+
+    .brand-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(15, 173, 75, 0.3);
+    }
+
+    .brand-img-area {
+      height: 180px;
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .brand-img-placeholder {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.2);
+    }
+
+    .brand-card-body {
+      padding: 24px;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .brand-name .italic {
+      font-style: italic;
+      color: var(--green);
+    }
+
+    .brand-range {
+      display: inline-block;
+      background: var(--green);
+      color: #fff;
+      padding: 3px 12px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .brand-desc {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.7;
+    }
+
+    .brand-cta {
+      margin-top: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--purple);
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: background .2s;
+    }
+
+    .brand-cta:hover {
+      background: var(--purple-hover);
+    }
+
+    /* ── CASE STUDY CARDS ── */
+    .cs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .cs-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: box-shadow .25s, transform .2s;
+    }
+
+    .cs-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+
+    .cs-img {
+      height: 160px;
+      background: var(--section-alt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cs-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--green);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+
+    .cs-img-hint {
+      font-size: 11px;
+      color: var(--text-xlight);
+    }
+
+    .cs-body {
+      padding: 20px;
+    }
+
+    .cs-client {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--green);
+      margin-bottom: 6px;
+    }
+
+    .cs-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .cs-meta {
+      font-size: 12px;
+      color: var(--text-xlight);
+    }
+
+    .cs-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--purple);
+      font-size: 12.5px;
+      font-weight: 600;
+      margin-top: 14px;
+    }
+
+    .cs-link::after {
+      content: '→';
+    }
+
+    /* ── CERT STRIP ── */
+    .cert-strip {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .cert-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      box-shadow: var(--shadow-sm);
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .cert-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .cert-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.2;
+    }
+
+    .cert-desc {
+      font-size: 11.5px;
+      color: var(--text-light);
+      margin-top: 2px;
+    }
+
+    /* ── FAQ ── */
+    .faq-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      width: 100%;
+      background: var(--white);
+      border: none;
+      text-align: left;
+      padding: 18px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-sans);
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--text-dark);
+      cursor: pointer;
+      transition: background .15s;
+      gap: 16px;
+    }
+
+    .faq-q:hover {
+      background: var(--green-light);
+    }
+
+    .faq-item.open .faq-q {
+      background: var(--green-light);
+      color: var(--green-dark);
+    }
+
+    .faq-toggle {
+      width: 26px;
+      height: 26px;
+      background: var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 16px;
+      color: var(--text-mid);
+      transition: all .2s;
+      line-height: 1;
+    }
+
+    .faq-item.open .faq-toggle {
+      background: var(--green);
+      color: #fff;
+      transform: rotate(45deg);
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .3s ease, padding .25s ease;
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.75;
+      background: var(--white);
+      padding: 0 22px;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 300px;
+      padding: 4px 22px 20px;
+    }
+
+    /* ── CTA BAND ── */
+    .cta-band {
+      background: var(--nav-bg);
+      padding: 72px 48px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-band::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--green);
+    }
+
+    .cta-band-bg {
+      position: absolute;
+      right: -80px;
+      top: -80px;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(15, 173, 75, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-band h2 {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .cta-band h2 .accent {
+      color: var(--green);
+    }
+
+    .cta-band p {
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.55);
+      max-width: 500px;
+      line-height: 1.7;
+    }
+
+    .cta-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .btn-green-lg {
+      padding: 15px 30px;
+      font-size: 15px;
+      border-radius: 8px;
+    }
+
+    .btn-outline-white {
+      background: transparent;
+      color: rgba(255, 255, 255, 0.75);
+      padding: 13px 26px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 7px;
+      font-size: 14px;
+      font-weight: 500;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all .2s;
+      cursor: pointer;
+    }
+
+    .btn-outline-white:hover {
+      border-color: rgba(255, 255, 255, 0.4);
+      color: #fff;
+    }
+
+    /* ── STICKY FLOAT ── */
+    .sticky-enquire {
+      position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%) rotate(0deg);
+      z-index: 800;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .sticky-btn-e {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      background: var(--purple);
+      color: #fff;
+      padding: 18px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: none;
+      cursor: pointer;
+      transition: background .2s;
+    }
+
+    .sticky-btn-c {
+      writing-mode: vertical-rl;
+      background: var(--nav-bg);
+      color: rgba(255, 255, 255, 0.7);
+      padding: 14px 10px;
+      font-size: 11px;
+      font-weight: 500;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+    }
+
+    /* ── PAGE HIDE/SHOW ── */
+    .page {
+      display: none;
+    }
+
+    .page.on {
+      display: block;
+    }
+
+    /* ── INLINE CALLOUT ── */
+    .callout {
+      background: var(--green-light);
+      border: 1px solid var(--green-mid);
+      border-left: 4px solid var(--green);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin-top: 24px;
+      font-size: 13.5px;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+
+    .callout strong {
+      color: var(--text-dark);
+    }
+
+    /* ── FEATURE LIST (two col) ── */
+    .feature-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .feat-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+
+    .feat-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+
+    .feat-text {
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.55;
+    }
+
+    .feat-text strong {
+      color: var(--text-dark);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* ── AOS-like on-load anims ── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-content>* {
+      animation: fadeUp .5s ease both;
+    }
+
+    .hero-content>*:nth-child(1) {
+      animation-delay: .05s;
+    }
+
+    .hero-content>*:nth-child(2) {
+      animation-delay: .12s;
+    }
+
+    .hero-content>*:nth-child(3) {
+      animation-delay: .2s;
+    }
+
+    .hero-content>*:nth-child(4) {
+      animation-delay: .28s;
+    }
+
+    .hero-content>*:nth-child(5) {
+      animation-delay: .35s;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════ PREVIEW BAR (remove in production) ══════════ -->
+  <div class="preview-switcher">
+    <span>Page Variant</span>
+    <button class="sw-btn on" onclick="show('mep',this)">🔧 MEP Contracting</button>
+    <button class="sw-btn" onclick="show('gen',this)">⚡ MTU Diesel Generators</button>
+    <button class="sw-btn" onclick="show('fms',this)">🏢 Facility Management</button>
+    <span class="sw-note">Apollo Power Systems — Service Page Template · apollopowersystems.com</span>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+     PAGE 1 — MEP CONTRACTING
+══════════════════════════════════════════════════════ -->
+  <div class="page on" id="p-mep">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-grid-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          MEP Contracting Services · Bangalore & Pan India
+        </div>
+        <h1>Expert <span class="accent">MEP Contractors</span> in Bangalore</h1>
+        <p class="hero-sub">Comprehensive Mechanical, Electrical & Plumbing contracting for industrial, commercial, and
+          infrastructure projects. Recognized by Shell as a Green Belt Contractor. Completed to NFPA standards.</p>
+        <div class="hero-ctas">
+          <a href="#" class="btn-purple">📋 Get a Free Estimate</a>
+          <a href="#" class="btn-ghost">View MEP Projects</a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item">
+            <div class="trust-icon">🏆</div><span><strong>ISO 9001:2015</strong>Quality Certified</span>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">🛢️</div><span><strong>Shell Green Belt</strong>Contractor</span>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">🔥</div><span><strong>NFPA Standards</strong>Compliant</span>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">⏱️</div><span><strong>30+ Years</strong>Experience</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="https://www.apollopowersystems.com/wp-content/themes/twentytwentyfive/assets/image/mep-slider-1.jpg"
+          alt="MTU Generator Set" style="width:100%;height:100%;object-fit:cover;object-position:center">
+      </div>
+    </div>
+
+    <!-- STATS BAND -->
+    <div class="stats-band">
+      <div class="stats-inner">
+        <div class="stat-cell">
+          <div class="stat-num">300<span class="stat-suf">+</span></div>
+          <div class="stat-lbl">Companies Supplied To</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">500<span class="stat-suf">+</span></div>
+          <div class="stat-lbl">Successful Projects</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">30<span class="stat-suf">+</span></div>
+          <div class="stat-lbl">Years of Excellence</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">100<span class="stat-suf">%</span></div>
+          <div class="stat-lbl">Quality Assurance & Control</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHAT IS MEP -->
+    <section class="sec sec-white">
+      <div class="two-col center">
+        <div class="overview-body">
+          <div class="sec-tag">What We Do</div>
+          <h2 class="sec-h">Precision MEP <span class="accent">Contracting</span> for Complex Projects</h2>
+          <div class="divider-line"></div>
+          <p style="margin-top:24px">Looking for MEP contractors in Bangalore who can handle your project with precision
+            and expertise? Apollo Power Systems is a leading MEP contracting company, offering a comprehensive range of
+            <strong>Mechanical, Electrical, and Plumbing (MEP)</strong> services across India.
+          </p>
+          <p>Whether you need a trusted partner for a greenfield project or support in upgrading an existing facility,
+            our team of expert engineers, project managers, and skilled labour — with over 30 years of experience —
+            ensures top-quality execution from day one.</p>
+          <ul class="check-list">
+            <li>
+              <div class="check-icon-wrap"></div>HT/LT Electrical systems, solar PV, ELV, structured data setups
+            </li>
+            <li>
+              <div class="check-icon-wrap"></div>HVAC, fire safety, air conditioning, ventilation systems
+            </li>
+            <li>
+              <div class="check-icon-wrap"></div>Plumbing: drainage, water supply, rainwater harvesting
+            </li>
+            <li>
+              <div class="check-icon-wrap"></div>Government liaisoning & all statutory approvals managed end-to-end
+            </li>
+            <li>
+              <div class="check-icon-wrap"></div>Dedicated safety officers throughout the project lifecycle
+            </li>
+          </ul>
+          <div class="callout"><strong>Recognized as a Green Belt Contractor by Shell</strong> — 100% Quality Assurance
+            & Control. All projects completed as per NFPA Standards.</div>
+        </div>
+        <div class="stat-sidebar">
+          <div class="ss-header">
+            <div>
+              <div class="ss-header-title">Apollo MEP Capabilities</div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px">Project highlights</div>
+            </div>
+          </div>
+          <div class="ss-body">
+            <div class="ss-stat">
+              <div class="ss-num">300+</div>
+              <div class="ss-label"><strong>Companies Served</strong>Pan India coverage</div>
+            </div>
+            <div class="ss-stat">
+              <div class="ss-num">500+</div>
+              <div class="ss-label"><strong>Projects Delivered</strong>Across all MEP disciplines</div>
+            </div>
+            <div class="ss-stat">
+              <div class="ss-num">30+</div>
+              <div class="ss-label"><strong>Years in Industry</strong>Electrical & MEP contracting</div>
+            </div>
+            <div class="ss-stat">
+              <div class="ss-num">3,500+</div>
+              <div class="ss-label"><strong>Committed Individuals</strong>On-ground workforce</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEP OFFERINGS -->
+    <section class="sec sec-alt">
+      <div class="sec-head">
+        <div class="sec-tag">Our Offerings</div>
+        <h2 class="sec-h">Complete MEP <span class="accent">Services Suite</span></h2>
+        <div class="divider-line"></div>
+        <p class="sec-sub" style="margin-top:14px">From electrical systems and HVAC to plumbing and solar — we deliver
+          all MEP disciplines under one roof.</p>
+      </div>
+      <div class="three-col">
+        <div class="offer-card">
+          <div class="oc-icon">⚡</div>
+          <div class="oc-title">Electrical Works</div>
+          <div class="oc-text">HT/LT power systems, generator installation, ELV systems, structured data cabling, solar
+            PV, and building automation. From design to commissioning.</div>
+          <div class="oc-link">Know more</div>
+        </div>
+        <div class="offer-card">
+          <div class="oc-icon">🌡️</div>
+          <div class="oc-title">Mechanical Works</div>
+          <div class="oc-text">HVAC design and installation, fire suppression systems, pressurisation, split and central
+            air conditioning, ventilation engineering for industrial environments.</div>
+          <div class="oc-link">Know more</div>
+        </div>
+        <div class="offer-card">
+          <div class="oc-icon">🔧</div>
+          <div class="oc-title">Plumbing Works</div>
+          <div class="oc-text">Full-scope plumbing: underground drainage, domestic water supply, sewage treatment,
+            stormwater management, and rainwater harvesting systems.</div>
+          <div class="oc-link">Know more</div>
+        </div>
+        <div class="offer-card">
+          <div class="oc-icon">☀️</div>
+          <div class="oc-title">Solar PV Projects</div>
+          <div class="oc-text">Rooftop and ground-mounted solar power plant installation, net metering, grid-tie
+            systems, and comprehensive commissioning support across India.</div>
+          <div class="oc-link">Know more</div>
+        </div>
+        <div class="offer-card">
+          <div class="oc-icon">🏛️</div>
+          <div class="oc-title">Govt. Liaisoning & Approvals</div>
+          <div class="oc-text">Complete management of BESCOM connections, fire NOC, BWSSB approvals, CEIG inspections,
+            and all regulatory statutory clearances for your project.</div>
+          <div class="oc-link">Know more</div>
+        </div>
+        <div class="offer-card">
+          <div class="oc-icon">⛰️</div>
+          <div class="oc-title">EHT Pole Shifting</div>
+          <div class="oc-text">Extra High Tension electrical pole shifting and route clearance for infrastructure and
+            real estate projects — including government coordination.</div>
+          <div class="oc-link">Know more</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECT CAPABILITIES -->
+    <section class="sec sec-white">
+      <div class="two-col">
+        <div>
+          <div class="sec-tag">Project Capabilities</div>
+          <h2 class="sec-h">What Sets Our <span class="accent">Execution Apart</span></h2>
+          <div class="divider-line"></div>
+          <p class="sec-sub" style="margin-top:18px">We employ intelligent engineering practices and modern construction
+            techniques that focus on efficiency, minimize project duration, and maintain strict quality controls
+            throughout.</p>
+          <div class="feature-list">
+            <div class="feat-item">
+              <div class="feat-dot"></div>
+              <div class="feat-text"><strong>Extensive Industry Experience</strong>30+ years across industrial,
+                commercial & infrastructure MEP</div>
+            </div>
+            <div class="feat-item">
+              <div class="feat-dot"></div>
+              <div class="feat-text"><strong>Liaisoning & Statutory Approvals</strong>All Govt. body approvals managed
+                internally</div>
+            </div>
+            <div class="feat-item">
+              <div class="feat-dot"></div>
+              <div class="feat-text"><strong>Quality Assurance & Control</strong>ISO 9001:2015 certified processes at
+                every stage</div>
+            </div>
+            <div class="feat-item">
+              <div class="feat-dot"></div>
+              <div class="feat-text"><strong>Safety Officers on Every Project</strong>Zero-incident culture, NFPA
+                compliance</div>
+            </div>
+            <div class="feat-item">
+              <div class="feat-dot"></div>
+              <div class="feat-text"><strong>Expert Engineering Team</strong>Engineers, PMs & skilled trades with deep
+                domain knowledge</div>
+            </div>
+            <div class="feat-item">
+              <div class="feat-dot"></div>
+              <div class="feat-text"><strong>Comprehensive Turnkey Delivery</strong>Design → Installation → Testing →
+                Commissioning → Handover</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="sec-tag">How We Work</div>
+          <h2 class="sec-h">Our MEP Project <span class="accent">Process</span></h2>
+          <div class="divider-line"></div>
+          <div style="margin-top:40px;display:flex;flex-direction:column;gap:0">
+            <div style="display:flex;gap:18px;padding-bottom:32px;position:relative">
+              <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0">
+                <div
+                  style="width:44px;height:44px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;color:#fff;font-size:16px">
+                  01</div>
+                <div style="width:1px;flex:1;background:var(--green-mid);margin-top:6px"></div>
+              </div>
+              <div style="padding-top:8px">
+                <div style="font-weight:700;font-size:14.5px;color:var(--text-dark);margin-bottom:5px">Site Survey &
+                  Assessment</div>
+                <div style="font-size:13px;color:var(--text-light);line-height:1.65">Detailed site inspection and scope
+                  understanding before any estimation or design begins.</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:18px;padding-bottom:32px;position:relative">
+              <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0">
+                <div
+                  style="width:44px;height:44px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;color:#fff;font-size:16px">
+                  02</div>
+                <div style="width:1px;flex:1;background:var(--green-mid);margin-top:6px"></div>
+              </div>
+              <div style="padding-top:8px">
+                <div style="font-weight:700;font-size:14.5px;color:var(--text-dark);margin-bottom:5px">Design &
+                  Engineering</div>
+                <div style="font-size:13px;color:var(--text-light);line-height:1.65">MEP design drawings, BOQ
+                  preparation, value engineering, and procurement planning.</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:18px;padding-bottom:32px">
+              <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0">
+                <div
+                  style="width:44px;height:44px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;color:#fff;font-size:16px">
+                  03</div>
+                <div style="width:1px;flex:1;background:var(--green-mid);margin-top:6px"></div>
+              </div>
+              <div style="padding-top:8px">
+                <div style="font-weight:700;font-size:14.5px;color:var(--text-dark);margin-bottom:5px">Approvals & Site
+                  Mobilization</div>
+                <div style="font-size:13px;color:var(--text-light);line-height:1.65">Statutory clearances, government
+                  liaisoning, and team deployment to site.</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:18px;padding-bottom:32px">
+              <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0">
+                <div
+                  style="width:44px;height:44px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;color:#fff;font-size:16px">
+                  04</div>
+                <div style="width:1px;flex:1;background:var(--green-mid);margin-top:6px"></div>
+              </div>
+              <div style="padding-top:8px">
+                <div style="font-weight:700;font-size:14.5px;color:var(--text-dark);margin-bottom:5px">Execution with
+                  QA/QC</div>
+                <div style="font-size:13px;color:var(--text-light);line-height:1.65">Installation with daily progress
+                  reporting, quality checks, and safety audits.</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:18px">
+              <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0">
+                <div
+                  style="width:44px;height:44px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;color:#fff;font-size:16px">
+                  05</div>
+              </div>
+              <div style="padding-top:8px">
+                <div style="font-weight:700;font-size:14.5px;color:var(--text-dark);margin-bottom:5px">Testing,
+                  Commissioning & Handover</div>
+                <div style="font-size:13px;color:var(--text-light);line-height:1.65">Full testing, as-built drawings,
+                  documentation, staff training, and AMC support.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INDUSTRIES -->
+    <section class="sec sec-alt">
+      <div class="sec-head-center">
+        <div class="sec-tag">Industries Served</div>
+        <h2 class="sec-h">Sectors We <span class="accent">Operate In</span></h2>
+        <div class="divider-line" style="margin:14px auto 0"></div>
+      </div>
+      <div class="ind-grid">
+        <div class="ind-card"><span class="ind-icon">🏭</span>Manufacturing & Industrial</div>
+        <div class="ind-card"><span class="ind-icon">💻</span>IT Parks & Tech Campuses</div>
+        <div class="ind-card"><span class="ind-icon">🏥</span>Hospitals & Healthcare</div>
+        <div class="ind-card"><span class="ind-icon">🏬</span>Commercial Complexes</div>
+        <div class="ind-card"><span class="ind-icon">🛢️</span>Oil & Gas Facilities</div>
+        <div class="ind-card"><span class="ind-icon">✈️</span>Airports & Infrastructure</div>
+        <div class="ind-card"><span class="ind-icon">🎓</span>Educational Institutions</div>
+        <div class="ind-card"><span class="ind-icon">🏗️</span>Real Estate Developers</div>
+      </div>
+    </section>
+
+    <!-- CLIENT STORIES -->
+    <section class="sec sec-white">
+      <div
+        style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;flex-wrap:wrap;gap:16px">
+        <div>
+          <div class="sec-tag">Client Stories</div>
+          <h2 class="sec-h">Our Work Speaks <span class="accent">for Itself</span></h2>
+          <div class="divider-line"></div>
+        </div>
+        <a href="https://www.apollopowersystems.com/case-study/" class="btn-green">View All Case Studies →</a>
+      </div>
+      <div class="cs-grid">
+        <div class="cs-card">
+          <div class="cs-img">
+            <div class="cs-badge">Pharma</div><span class="cs-img-hint">Project Photo</span>
+          </div>
+          <div class="cs-body">
+            <div class="cs-client">Adcock Ingram</div>
+            <div class="cs-title">Reliable MTU Power Solutions for Adcock Ingram's Pharma Plant: Ensuring Continuous
+              Operations</div>
+            <div class="cs-meta">MEP + Generator · Pharmaceutical</div>
+            <div class="cs-link">Read more</div>
+          </div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-img">
+            <div class="cs-badge">Manufacturing</div><span class="cs-img-hint">Project Photo</span>
+          </div>
+          <div class="cs-body">
+            <div class="cs-client">TAL Manufacturing Solutions</div>
+            <div class="cs-title">Reliable Backup Power Solutions: Deploying MTU-Reliant DG Sets</div>
+            <div class="cs-meta">MEP + Power · Industrial</div>
+            <div class="cs-link">Read more</div>
+          </div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-img">
+            <div class="cs-badge">Hospitality</div><span class="cs-img-hint">Project Photo</span>
+          </div>
+          <div class="cs-body">
+            <div class="cs-client">ITC Hotels, Hyderabad</div>
+            <div class="cs-title">Reliable Backup Power Solution Installation at ITC Hotel Hyderabad</div>
+            <div class="cs-meta">MEP + DG Installation · Hospitality</div>
+            <div class="cs-link">Read more</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY APOLLO -->
+    <section class="sec sec-alt">
+      <div class="two-col">
+        <div>
+          <div class="sec-tag">Why Apollo Power Systems?</div>
+          <h2 class="sec-h">Trusted by 300+ Companies <span class="accent">Across India</span></h2>
+          <div class="divider-line"></div>
+          <p class="sec-sub" style="margin-top:18px">With 30+ years of MEP contracting experience and recognition from
+            Shell as a Green Belt Contractor, Apollo Power Systems delivers quality that competitors cannot match.</p>
+          <a href="#" class="btn-green" style="margin-top:28px;display:inline-flex">Talk to Our MEP Team →</a>
+        </div>
+        <div class="why-grid">
+          <div class="why-card">
+            <div class="why-num-badge">01</div>
+            <div class="why-body">
+              <div class="why-title">Intelligent Engineering Practices</div>
+              <div class="why-text">Modern techniques that maximize efficiency and minimize project timelines without
+                ever compromising on quality.</div>
+            </div>
+          </div>
+          <div class="why-card">
+            <div class="why-num-badge">02</div>
+            <div class="why-body">
+              <div class="why-title">Expert Team — 30+ Years</div>
+              <div class="why-text">Engineers, PMs, and skilled tradespeople with deep experience across industrial and
+                commercial MEP contracting.</div>
+            </div>
+          </div>
+          <div class="why-card">
+            <div class="why-num-badge">03</div>
+            <div class="why-body">
+              <div class="why-title">ISO 9001 Quality Assurance</div>
+              <div class="why-text">Every project is executed under certified quality processes. Shell Green Belt
+                status. NFPA compliant at every stage.</div>
+            </div>
+          </div>
+          <div class="why-card">
+            <div class="why-num-badge">04</div>
+            <div class="why-body">
+              <div class="why-title">Zero Red-Tape Hassle</div>
+              <div class="why-text">BESCOM, Fire NOC, BWSSB, CEIG — our liaisoning team handles all government approvals
+                so you don't have to.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section class="sec sec-white" style="padding-top:40px;padding-bottom:40px">
+      <div class="sec-tag" style="margin-bottom:20px;text-align:center">Certifications & Standards</div>
+      <div class="cert-strip">
+        <div class="cert-badge">
+          <div class="cert-icon">🏆</div>
+          <div>
+            <div class="cert-name">ISO 9001:2015</div>
+            <div class="cert-desc">Quality Management System</div>
+          </div>
+        </div>
+        <div class="cert-badge">
+          <div class="cert-icon">🛢️</div>
+          <div>
+            <div class="cert-name">Shell Green Belt</div>
+            <div class="cert-desc">Recognized Contractor Status</div>
+          </div>
+        </div>
+        <div class="cert-badge">
+          <div class="cert-icon">🔥</div>
+          <div>
+            <div class="cert-name">NFPA Compliant</div>
+            <div class="cert-desc">Fire Safety Standards</div>
+          </div>
+        </div>
+        <div class="cert-badge">
+          <div class="cert-icon">⚡</div>
+          <div>
+            <div class="cert-name">CPCB IV+ Certified</div>
+            <div class="cert-desc">Latest Emission Norm</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="sec sec-alt">
+      <div style="display:grid;grid-template-columns:300px 1fr;gap:64px">
+        <div>
+          <div class="sec-tag">FAQ</div>
+          <h2 class="sec-h">Frequently Asked <span class="accent">Questions</span></h2>
+          <div class="divider-line"></div>
+          <p style="font-size:13.5px;color:var(--text-light);margin-top:18px;line-height:1.7">Can't find what you're
+            looking for? <a href="https://www.apollopowersystems.com/contact-us/"
+              style="color:var(--green);font-weight:600">Contact our team →</a></p>
+        </div>
+        <div class="faq-wrap">
+          <div class="faq-item"><button class="faq-q" onclick="faq(this)">What types of MEP projects does Apollo handle?
+              <div class="faq-toggle">+</div>
+            </button>
+            <div class="faq-a">Apollo handles all MEP verticals — electrical (HT/LT, solar, ELV), mechanical (HVAC,
+              fire, ventilation), and plumbing (drainage, water supply, rainwater harvesting) — for commercial,
+              industrial, and infrastructure projects across India. We also manage solar PV and EHT pole shifting.</div>
+          </div>
+          <div class="faq-item"><button class="faq-q" onclick="faq(this)">Do you manage government approvals and
+              statutory compliance?<div class="faq-toggle">+</div></button>
+            <div class="faq-a">Yes. Our dedicated liaisoning team manages all statutory approvals including BESCOM
+              connections, Fire NOC, BWSSB approvals, CEIG inspections, and Pollution Control Board consents end-to-end
+              on your behalf.</div>
+          </div>
+          <div class="faq-item"><button class="faq-q" onclick="faq(this)">What certifications and quality standards does
+              Apollo follow?<div class="faq-toggle">+</div></button>
+            <div class="faq-a">Apollo is ISO 9001:2015 certified and recognized as a Shell Green Belt Contractor. All
+              projects are executed per NFPA standards, with dedicated QA/QC officers on site throughout the project
+              lifecycle.</div>
+          </div>
+          <div class="faq-item"><button class="faq-q" onclick="faq(this)">Can Apollo handle both small and large-scale
+              MEP projects?<div class="faq-toggle">+</div></button>
+            <div class="faq-a">Yes. We have executed projects ranging from standalone commercial offices to large-scale
+              industrial complexes across India. Our scalable team size ensures consistent quality at every project
+              level.</div>
+          </div>
+          <div class="faq-item"><button class="faq-q" onclick="faq(this)">Where is Apollo Power Systems located and
+              where do you operate?<div class="faq-toggle">+</div></button>
+            <div class="faq-a">Apollo Power Systems is headquartered in Bangalore and operates Pan India — with service
+              engineers and project teams across Bangalore, Hyderabad, Mumbai, Chennai, Coimbatore, and Vizag.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+     PAGE 2 — MTU DIESEL GENERATORS
+══════════════════════════════════════════════════════ -->
+  <div class="page" id="p-gen">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-grid-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>CPCB IV+ Certified · Rolls-Royce & FORCE MTU
+        </div>
+        <h1>Best-in-Class <span class="accent">MTU Diesel Generators</span> for Your Operations</h1>
+        <p class="hero-sub">Authorized channel partner of Rolls-Royce's MTU and Force MTU — offering a complete range of
+          diesel generator sets from 450 kVA to 4000 kVA for industrial, commercial, and critical applications across
+          India.</p>
+        <div class="hero-ctas">
+          <a href="#" class="btn-purple">⚡ Enquire Now</a>
+          <a href="#" class="btn-ghost">📄 Download Brochure</a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item">
+            <div class="trust-icon">🏅</div><span><strong>Rolls-Royce MTU</strong>Authorised Partner</span>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">🌿</div><span><strong>CPCB IV+</strong>Emission Compliant</span>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">🔧</div><span><strong>24×7 Service</strong>Pan India Support</span>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">⏱️</div><span><strong>30+ Years</strong>DG Expertise</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="https://www.apollopowersystems.com/wp-content/uploads/2025/07/mtu-diesel-generators-1-scaled.png"
+          alt="MTU Generator Set" style="width:100%;height:100%;object-fit:cover;object-position:center">
+      </div>
+    </div>
+
+    <!-- STATS BAND -->
+    <div class="stats-band">
+      <div class="stats-inner">
+        <div class="stat-cell">
+          <div class="stat-num">850<span class="stat-suf">+</span></div>
+          <div class="stat-lbl">DG Sets Installed</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">300<span class="stat-suf">+</span></div>
+          <div class="stat-lbl">Companies Supplied</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">450–4000</div>
+          <div class="stat-lbl">kVA Power Range</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">CPCB IV<span class="stat-suf">+</span></div>
+          <div class="stat-lbl">Emission Compliant</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section class="sec sec-white">
+      <div class="two-col center">
+        <div class="overview-body">
+          <div class="sec-tag">About MTU Generators</div>
+          <h2 class="sec-h">German Engineering. <span class="accent">30 Years of Indian Expertise.</span></h2>
+          <div class="divider-line"></div>
+          <p style="margin-top:24px">We are committed to delivering outstanding backup power systems and unmatched
+            customer support. As leaders in the generator industry for over 30 years, we understand the critical
+            importance of standby power in residential, industrial, and commercial environments.</p>
+          <p>Unlike any other equipment or machine, diesel generators are the lifeline of any operation — requiring the
+            utmost reliability in terms of uptime efficiency and minimal maintenance costs. As an <strong>authorized
+              channel partner of Rolls-Royce's MTU and Force MTU</strong>, we offer a complete range of MTU generators
+            in India from 450 kVA to 4000 kVA.</p>
+          <ul class="check-list">
+            <li>
+              <div class="check-icon-wrap"></div>CPCB IV+ emission compliant — fully future-proofed for Indian
+              regulations
+            </li>
+            <li>
+              <div class="check-icon-wrap"></div>CRDI engine with best-in-class fuel efficiency
+            </li>
+            <li>
+              <div class="check-icon-wrap"></div>Highest block loading capacity and lowest maintenance cost in class
+            </li>
+            <li>
+              <div class="check-icon-wrap"></div>Full SITC: Supply, Installation, Testing & Commissioning
+            </li>
+            <li>
+              <div class="check-icon-wrap"></div>Synchronisation panels, AMF panels, and acoustic canopy options
+            </li>
+            <li>
+              <div class="check-icon-wrap"></div>24×7 breakdown support across South India and Pan India
+            </li>
+          </ul>
+        </div>
+        <div class="stat-sidebar">
+          <div class="ss-header">
+            <div>
+              <div class="ss-header-title">Salient Features</div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px">MTU DG Set highlights</div>
+            </div>
+          </div>
+          <div class="ss-body">
+            <div class="ss-stat">
+              <div class="ss-num" style="font-size:22px;min-width:unset;margin-right:12px">🔩</div>
+              <div class="ss-label"><strong>CRDI Engine</strong>Common Rail Direct Injection for efficiency</div>
+            </div>
+            <div class="ss-stat">
+              <div class="ss-num" style="font-size:22px;min-width:unset;margin-right:12px">⛽</div>
+              <div class="ss-label"><strong>Best-in-Class Fuel Efficiency</strong>Lowest fuel consumption per kVA</div>
+            </div>
+            <div class="ss-stat">
+              <div class="ss-num" style="font-size:22px;min-width:unset;margin-right:12px">🔧</div>
+              <div class="ss-label"><strong>Lowest Maintenance Cost</strong>Extended service intervals</div>
+            </div>
+            <div class="ss-stat">
+              <div class="ss-num" style="font-size:22px;min-width:unset;margin-right:12px">⚡</div>
+              <div class="ss-label"><strong>Highest Block Loading</strong>Instant full-load acceptance</div>
+            </div>
+            <div class="ss-stat">
+              <div class="ss-num" style="font-size:22px;min-width:unset;margin-right:12px">🌿</div>
+              <div class="ss-label"><strong>CPCB IV+ Certified</strong>India's latest emission norm</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BRAND OFFERINGS -->
+    <section class="sec sec-dark">
+      <div class="sec-head-center">
+        <div class="sec-tag on-dark">Our Generator Offerings</div>
+        <h2 class="sec-h on-dark">Two World-Class <span class="accent">Brands. One Partner.</span></h2>
+        <div class="divider-line" style="margin:14px auto 0"></div>
+        <p class="sec-sub on-dark" style="margin:14px auto 0">Apollo is the authorized channel partner for both
+          Rolls-Royce MTU and FORCE MTU — India's two premium diesel generator brands.</p>
+      </div>
+      <div class="brand-grid">
+        <div class="brand-card">
+          <div class="brand-img-area"><span class="brand-img-placeholder">Force MTU Generator Image</span></div>
+          <div class="brand-card-body">
+            <div class="brand-name">Force <span class="italic">mtu</span></div>
+            <div class="brand-range">450 kVA to 910 kVA</div>
+            <div class="brand-desc">A joint venture of Force Motors (51%) and Rolls-Royce Power Systems AG (49%).
+              Manufacturing in India using MTU Series 1600 engines — combining Rolls-Royce's cutting-edge technology
+              with Force Motors' local manufacturing expertise.</div>
+            <a href="https://www.apollopowersystems.com/contact-us/" class="brand-cta">Enquire Now →</a>
+          </div>
+        </div>
+        <div class="brand-card">
+          <div class="brand-img-area"><span class="brand-img-placeholder">Rolls-Royce MTU Generator Image</span></div>
+          <div class="brand-card-body">
+            <div class="brand-name">Rolls-Royce <span class="italic">mtu</span></div>
+            <div class="brand-range">1010 kVA to 4000 kVA</div>
+            <div class="brand-desc">The world's most trusted premium diesel generator brand. MTU generators power
+              airports, data centers, hospitals, and oil & gas facilities globally. Designed for the most demanding
+              applications and challenging conditions.</div>
+            <a href="https://www.apollopowersystems.com/contact-us/" class="brand-cta">Enquire Now →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERTISE -->
+    <section class="sec sec-white">
+      <div class="two-col">
+        <div>
+          <div class="sec-tag">Our DG Expertise</div>
+          <h2 class="sec-h">Complete <span class="accent">DG Works</span> — Design to Commissioning</h2>
+          <div class="divider-line"></div>
+          <p class="sec-sub" style="margin-top:18px">We don't just supply generators. Apollo provides full design,
+            supply, installation, testing, and commissioning of DG works — plus all associated balance of plant works.
+          </p>
+          <div class="feature-list">
+            <div class="feat-item">
+              <div class="feat-dot"></div>
+              <div class="feat-text"><strong>Design, Supply, Installation, T&C</strong>Complete turnkey DG project
+                delivery</div>
+            </div>
+            <div class="feat-item">
+              <div class="feat-dot"></div>
+              <div class="feat-text"><strong>BOP — Mechanical Works</strong>Fuel systems, exhaust, acoustic canopy</div>
+            </div>
+            <div class="feat-item">
+              <div class="feat-dot"></div>
+              <div class="feat-text"><strong>BOP — Electrical Works</strong>AMF panels, synchronisation, cabling</div>
+            </div>
+            <div class="feat-item">
+              <div class="feat-dot"></div>
+              <div class="feat-text"><strong>Liaisoning & Statutory Approvals</strong>CPCB, KSPCB, and govt. clearances
+              </div>
+            </div>
+            <div class="feat-item">
+              <div class="feat-dot"></div>
+              <div class="feat-text"><strong>AMC & Generator Support</strong>Preventive maintenance contracts</div>
+            </div>
+            <div class="feat-item">
+              <div class="feat-dot"></div>
+              <div class="feat-text"><strong>24×7 Breakdown Support</strong>Service engineers across Pan India</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="sec-tag">Industries Served</div>
+          <h2 class="sec-h">Built for <span class="accent">Critical Applications</span></h2>
+          <div class="divider-line"></div>
+          <div class="ind-grid" style="margin-top:28px;grid-template-columns:1fr 1fr">
+            <div class="ind-card"><span class="ind-icon">💾</span>Data Centers</div>
+            <div class="ind-card"><span class="ind-icon">🏥</span>Hospitals</div>
+            <div class="ind-card"><span class="ind-icon">🏭</span>Manufacturing</div>
+            <div class="ind-card"><span class="ind-icon">🛢️</span>Oil & Gas</div>
+            <div class="ind-card"><span class="ind-icon">✈️</span>Airports</div>
+            <div class="ind-card"><span class="ind-icon">💻</span>IT Campuses</div>
+            <div class="ind-card"><span class="ind-icon">🏗️</span>Real Estate</div>
+            <div class="ind-card"><span class="ind-icon">⚡</span>Power Utilities</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODEL TABLE -->
+    <section class="sec sec-alt">
+      <div class="sec-head">
+        <div class="sec-tag">Find Your Requirement</div>
+        <h2 class="sec-h">MTU Generator <span class="accent">Model Range</span></h2>
+        <div class="divider-line"></div>
+        <p class="sec-sub" style="margin-top:14px">All models are CPCB IV+ emission certified and available in Prime and
+          Standby configurations. Contact us for a tailored proposal.</p>
+      </div>
+      <div class="table-wrap">
+        <table class="product-table">
+          <thead>
+            <tr>
+              <th>Fuel Type</th>
+              <th>Rating (kVA)</th>
+              <th>Model</th>
+              <th>Application</th>
+              <th>Brand</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Diesel</td>
+              <td class="kva">500 kVA</td>
+              <td>12V1600 G20F4IN</td>
+              <td>Prime</td>
+              <td>Force MTU</td>
+            </tr>
+            <tr>
+              <td>Diesel</td>
+              <td class="kva">610 kVA</td>
+              <td>12V1600 G20F4IN</td>
+              <td>Prime</td>
+              <td>Force MTU</td>
+            </tr>
+            <tr>
+              <td>Diesel</td>
+              <td class="kva">910 kVA</td>
+              <td>12V1600 G91F</td>
+              <td>Prime</td>
+              <td>Force MTU</td>
+            </tr>
+            <tr>
+              <td>Diesel</td>
+              <td class="kva">1135 kVA</td>
+              <td>16V2000 DS1250</td>
+              <td>Prime</td>
+              <td>Rolls-Royce MTU</td>
+            </tr>
+            <tr>
+              <td>Diesel</td>
+              <td class="kva">1250 kVA</td>
+              <td>18V2000 DS1400</td>
+              <td>Prime</td>
+              <td>Rolls-Royce MTU</td>
+            </tr>
+            <tr>
+              <td>Diesel</td>
+              <td class="kva">1600 kVA</td>
+              <td>12V4000 DS1650</td>
+              <td>Prime</td>
+              <td>Rolls-Royce MTU</td>
+            </tr>
+            <tr>
+              <td>Diesel</td>
+              <td class="kva">1700 kVA</td>
+              <td>12V4000 DS1750</td>
+              <td>Prime</td>
+              <td>Rolls-Royce MTU</td>
+            </tr>
+            <tr>
+              <td>Diesel</td>
+              <td class="kva">1880 kVA</td>
+              <td>12V4000 DS2000</td>
+              <td>Prime</td>
+              <td>Rolls-Royce MTU</td>
+            </tr>
+            <tr>
+              <td>Diesel</td>
+              <td class="kva">2160 kVA</td>
+              <td>16V4000 DS2250</td>
+              <td>Prime</td>
+              <td>Rolls-Royce MTU</td>
+            </tr>
+            <tr>
+              <td>Diesel</td>
+              <td class="kva">2360 kVA</td>
+              <td>16V4000 DS2500</td>
+              <td>Prime</td>
+              <td>Rolls-Royce MTU</td>
+            </tr>
+            <tr>
+              <td>Diesel</td>
+              <td class="kva">2640 kVA</td>
+              <td>20V4000 DS2750</td>
+              <td>Prime</td>
+              <td>Rolls-Royce MTU</td>
+            </tr>
+            <tr>
+              <td>Diesel</td>
+              <td class="kva">2910 kVA</td>
+              <td>20V4000 DS3100</td>
+              <td>Prime</td>
+              <td>Rolls-Royce MTU</td>
+            </tr>
+            <tr>
+              <td>Diesel</td>
+              <td class="kva">3380 kVA</td>
+              <td>20V4000 DS3600</td>
+              <td>Prime</td>
+              <td>Rolls-Royce MTU</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:12.5px;color:var(--text-light);margin-top:14px">* All models available in CPCB IV+ compliant
+        configuration. Contact Apollo for custom kVA requirements, gas generator options, and standby ratings.</p>
+    </section>
+
+    <!-- CLIENT STORIES -->
+    <section class="sec sec-white">
+      <div
+        style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;flex-wrap:wrap;gap:16px">
+        <div>
+          <div class="sec-tag">Client Stories</div>
+          <h2 class="sec-h">MTU Generators <span class="accent">in Action</span></h2>
+          <div class="divider-line"></div>
+        </div>
+        <a href="https://www.apollopowersystems.com/case-study/" class="btn-green">View All Case Studies →</a>
+      </div>
+      <div class="cs-grid">
+        <div class="cs-card">
+          <div class="cs-img">
+            <div class="cs-badge">Pharma</div><span class="cs-img-hint">Project Photo</span>
+          </div>
+          <div class="cs-body">
+            <div class="cs-client">Adcock Ingram</div>
+            <div class="cs-title">Reliable MTU Power Solutions for Adcock Ingram's Pharma Plant: Ensuring Continuous
+              Operations</div>
+            <div class="cs-meta">MTU Generator · Pharmaceutical</div>
+            <div class="cs-link">Read more</div>
+          </div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-img">
+            <div class="cs-badge">Residential</div><span class="cs-img-hint">Project Photo</span>
+          </div>
+          <div class="cs-body">
+            <div class="cs-client">Godrej Royale Woods</div>
+            <div class="cs-title">Reliable Backup Power for Godrej Royale Woods: Efficient FMTU Backup Solutions</div>
+            <div class="cs-meta">Force MTU · Residential</div>
+            <div class="cs-link">Read more</div>
+          </div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-img">
+            <div class="cs-badge">Hospitality</div><span class="cs-img-hint">Project Photo</span>
+          </div>
+          <div class="cs-body">
+            <div class="cs-client">ITC Hotels, Hyderabad</div>
+            <div class="cs-title">Reliable Backup Power Solution Installation at ITC Hotel Hyderabad</div>
+            <div class="cs-meta">Rolls-Royce MTU · Hospitality</div>
+            <div class="cs-link">Read more</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="sec sec-alt">
+      <div style="display:grid;grid-template-columns:300px 1fr;gap:64px">
+        <div>
+          <div class="sec-tag">FAQ</div>
+          <h2 class="sec-h">Generator <span class="accent">FAQs</span></h2>
+          <div class="divider-line"></div>
+          <p style="font-size:13.5px;color:var(--text-light);margin-top:18px;line-height:1.7">More questions? <a
+              href="https://www.apollopowersystems.com/contact-us/" style="color:var(--green);font-weight:600">Talk to
+              our team →</a></p>
+        </div>
+        <div class="faq-wrap">
+          <div class="faq-item"><button class="faq-q" onclick="faq(this)">What is CPCB IV+ and why does it matter for my
+              generator?<div class="faq-toggle">+</div></button>
+            <div class="faq-a">CPCB IV+ is India's most recent and stringent emission norm for diesel generator sets,
+              made mandatory from 2023. All new DG sets must comply with this standard. Apollo's MTU generators are
+              fully CPCB IV+ certified, ensuring legal compliance and future readiness.</div>
+          </div>
+          <div class="faq-item"><button class="faq-q" onclick="faq(this)">What is the difference between Rolls-Royce MTU
+              and Force MTU?<div class="faq-toggle">+</div></button>
+            <div class="faq-a">Force MTU is a joint venture between Force Motors (51%) and Rolls-Royce Power Systems AG
+              (49%), manufacturing MTU Series 1600 engines in India and covering 450–910 kVA. Rolls-Royce MTU covers
+              higher ranges (1010–4000 kVA) for critical, mission-essential applications. Apollo supplies both brands.
+            </div>
+          </div>
+          <div class="faq-item"><button class="faq-q" onclick="faq(this)">Do you provide AMC and generator support after
+              installation?<div class="faq-toggle">+</div></button>
+            <div class="faq-a">Yes. Apollo provides comprehensive Annual Maintenance Contracts (AMC) for all MTU DG
+              sets, covering preventive maintenance schedules, genuine spare parts supply, and 24×7 emergency breakdown
+              support across Pan India.</div>
+          </div>
+          <div class="faq-item"><button class="faq-q" onclick="faq(this)">What is the range of generator sets available
+              through Apollo?<div class="faq-toggle">+</div></button>
+            <div class="faq-a">Apollo offers MTU diesel generator sets from 450 kVA (Force MTU) to 4000 kVA (Rolls-Royce
+              MTU). We also offer gas generator sets. Contact our team for custom kVA requirements above or below these
+              ranges.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+     PAGE 3 — FACILITY MANAGEMENT
+══════════════════════════════════════════════════════ -->
+  <div class="page" id="p-fms">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-grid-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>Integrated Facility Management Services · Pan India
+        </div>
+        <h1>Industry Leaders in <span class="accent">Integrated Facility Management</span></h1>
+        <p class="hero-sub">From humble beginnings in 1995 to managing 120+ million sq ft of space across 350+ sites.
+          Apollo's FM division provides technical, operational, and sustainable facility management solutions under one
+          roof.</p>
+        <div class="hero-ctas">
+          <a href="#" class="btn-purple">🏢 Request a Proposal</a>
+          <a href="https://apollofms.in" class="btn-ghost" target="_blank">Visit Apollo FMS →</a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item">
+            <div class="trust-icon">🏢</div><span><strong>350+ Sites</strong>Managed Pan India</span>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">📐</div><span><strong>120M+ Sq Ft</strong>Space Managed</span>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">👥</div><span><strong>3,500+</strong>Team Members</span>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon">📅</div><span><strong>Since 1995</strong>FM Experience</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="https://www.apollopowersystems.com/wp-content/uploads/2025/07/mtu-gas-generators-1-scaled.png"
+          alt="MTU Generator Set" style="width:100%;height:100%;object-fit:cover;object-position:center">
+      </div>
+    </div>
+
+    <!-- STATS BAND -->
+    <div class="stats-band">
+      <div class="stats-inner">
+        <div class="stat-cell">
+          <div class="stat-num">120<span class="stat-suf">M+</span></div>
+          <div class="stat-lbl">Sq Ft of Space Managed</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">350<span class="stat-suf">+</span></div>
+          <div class="stat-lbl">Sites Across India</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">3,500<span class="stat-suf">+</span></div>
+          <div class="stat-lbl">Committed Individuals</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">30<span class="stat-suf">+</span></div>
+          <div class="stat-lbl">Years of Excellence</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section class="sec sec-white">
+      <div class="two-col center">
+        <div class="overview-body">
+          <div class="sec-tag">Our Story</div>
+          <h2 class="sec-h">Full-Service <span class="accent">Facility Management</span> Solutions Since 1995</h2>
+          <div class="divider-line"></div>
+          <p style="margin-top:24px">In 1995, we started out by focusing on providing FM technical services to our
+            project and DG clients. In 2015, we branched out into Apollo Facility Management Services, building on our
+            clients' confidence. From humble beginnings, we have grown to become a full-service solution provider with
+            more than 350 clients.</p>
+          <p>With an emphasis on increasing client value, we provide audits, innovative duct cleaning solutions, our
+            in-house facility management software, and much more. We position ourselves as the go-to source for
+            comprehensive facilities management solutions.</p>
+          <ul class="check-list">
+            <li>
+              <div class="check-icon-wrap"></div>Asset Operations — day-to-day MEP systems management
+            </li>
+            <li>
+              <div class="check-icon-wrap"></div>Asset Repairs & Maintenance — preventive and reactive maintenance
+            </li>
+            <li>
+              <div class="check-icon-wrap"></div>Asset Improvement — performance and sustainable solutions
+            </li>
+            <li>
+              <div class="check-icon-wrap"></div>100% Compliance — statutory and regulatory management
+            </li>
+            <li>
+              <div class="check-icon-wrap"></div>Digital Automation Tools — in-house CAFM software
+            </li>
+          </ul>
+        </div>
+        <div class="stat-sidebar">
+          <div class="ss-header">
+            <div>
+              <div class="ss-header-title">FM Service Capabilities</div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px">What makes us different</div>
+            </div>
+          </div>
+          <div class="ss-body">
+            <div class="ss-stat">
+              <div class="ss-num" style="font-size:22px;min-width:unset;margin-right:12px">🔩</div>
+              <div class="ss-label"><strong>Technical Expertise</strong>Deep MEP + DG capability in-house</div>
+            </div>
+            <div class="ss-stat">
+              <div class="ss-num" style="font-size:22px;min-width:unset;margin-right:12px">👥</div>
+              <div class="ss-label"><strong>Highly Competent Workforce</strong>Trained, certified field engineers</div>
+            </div>
+            <div class="ss-stat">
+              <div class="ss-num" style="font-size:22px;min-width:unset;margin-right:12px">⏰</div>
+              <div class="ss-label"><strong>On-Time Recruitment Solutions</strong>Staffing continuity guaranteed</div>
+            </div>
+            <div class="ss-stat">
+              <div class="ss-num" style="font-size:22px;min-width:unset;margin-right:12px">📚</div>
+              <div class="ss-label"><strong>Training & Development</strong>Continuous investment in talent</div>
+            </div>
+            <div class="ss-stat">
+              <div class="ss-num" style="font-size:22px;min-width:unset;margin-right:12px">💻</div>
+              <div class="ss-label"><strong>Digital Automation Tools</strong>Proprietary FM software platform</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OFFERINGS -->
+    <section class="sec sec-alt">
+      <div class="sec-head">
+        <div class="sec-tag">Our Offerings</div>
+        <h2 class="sec-h">Three Pillars of <span class="accent">FM Excellence</span></h2>
+        <div class="divider-line"></div>
+        <p class="sec-sub" style="margin-top:14px">Comprehensive facility management across three integrated service
+          pillars — all delivered by Apollo's own team.</p>
+      </div>
+      <div class="three-col">
+        <div class="offer-card">
+          <div class="oc-icon">⚙️</div>
+          <div class="oc-title">Asset Operations</div>
+          <div class="oc-text">Day-to-day operation of MEP systems, generator management, utility management, and all
+            technical systems — ensuring continuous, reliable building performance.</div>
+        </div>
+        <div class="offer-card">
+          <div class="oc-icon">🔧</div>
+          <div class="oc-title">Repairs & Maintenance</div>
+          <div class="oc-text">Preventive maintenance schedules, reactive breakdown response, AMC for all installed
+            assets including DG sets, HVAC, electrical, and plumbing systems.</div>
+        </div>
+        <div class="offer-card">
+          <div class="oc-icon">🌱</div>
+          <div class="oc-title">Performance & Sustainable Solutions</div>
+          <div class="oc-text">Energy auditing, sustainability reporting, performance benchmarking, and innovative duct
+            cleaning solutions to improve building efficiency and reduce costs.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICE CAPABILITIES GRID -->
+    <section class="sec sec-white">
+      <div class="sec-head-center">
+        <div class="sec-tag">Service Capabilities</div>
+        <h2 class="sec-h">What's Included in <span class="accent">Apollo FM</span></h2>
+        <div class="divider-line" style="margin:14px auto 0"></div>
+      </div>
+      <div class="four-col">
+        <div class="offer-card">
+          <div class="oc-icon">🔌</div>
+          <div class="oc-title">Technical Services</div>
+          <div class="oc-text">MEP systems O&M, generator AMC, electrical maintenance, HVAC servicing.</div>
+        </div>
+        <div class="offer-card">
+          <div class="oc-icon">👷</div>
+          <div class="oc-title">Workforce Management</div>
+          <div class="oc-text">Highly competent on-site workforce with training, development, and continuous investment.
+          </div>
+        </div>
+        <div class="offer-card">
+          <div class="oc-icon">✅</div>
+          <div class="oc-title">100% Compliance</div>
+          <div class="oc-text">Statutory renewals, Fire NOC, PCB consents, CEIG compliance — all managed.</div>
+        </div>
+        <div class="offer-card">
+          <div class="oc-icon">💻</div>
+          <div class="oc-title">Digital Automation</div>
+          <div class="oc-text">In-house facility management software for work orders, SLA tracking, and reporting.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIENT STORIES -->
+    <section class="sec sec-alt">
+      <div
+        style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;flex-wrap:wrap;gap:16px">
+        <div>
+          <div class="sec-tag">Client Stories</div>
+          <h2 class="sec-h">Trusted by India's <span class="accent">Leading Brands</span></h2>
+          <div class="divider-line"></div>
+        </div>
+        <a href="https://www.apollopowersystems.com/case-study/" class="btn-green">View All Case Studies →</a>
+      </div>
+      <div class="cs-grid">
+        <div class="cs-card">
+          <div class="cs-img">
+            <div class="cs-badge">Tech</div><span class="cs-img-hint">Project Photo</span>
+          </div>
+          <div class="cs-body">
+            <div class="cs-client">Google</div>
+            <div class="cs-title">Powering Google with Sustainable & Facility Management Solutions</div>
+            <div class="cs-meta">Integrated FM · Technology</div>
+            <div class="cs-link">Read more</div>
+          </div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-img">
+            <div class="cs-badge">Real Estate</div><span class="cs-img-hint">Project Photo</span>
+          </div>
+          <div class="cs-body">
+            <div class="cs-client">Prestige Group</div>
+            <div class="cs-title">Preferred Solar & Facility Management Partner for Prestige Projects</div>
+            <div class="cs-meta">FM + Solar · Real Estate</div>
+            <div class="cs-link">Read more</div>
+          </div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-img">
+            <div class="cs-badge">Aviation</div><span class="cs-img-hint">Project Photo</span>
+          </div>
+          <div class="cs-body">
+            <div class="cs-client">Airports Authority</div>
+            <div class="cs-title">Preferred Partner for Airports — Power & Facility Management</div>
+            <div class="cs-meta">Integrated FM · Aviation</div>
+            <div class="cs-link">Read more</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY APOLLO FM -->
+    <section class="sec sec-white">
+      <div class="two-col">
+        <div>
+          <div class="sec-tag">Why Apollo FM?</div>
+          <h2 class="sec-h">The <span class="accent">Apollo Advantage</span> in Facility Management</h2>
+          <div class="divider-line"></div>
+          <p class="sec-sub" style="margin-top:18px">Unlike generic FM companies, Apollo brings real MEP, generator, and
+            electrical expertise in-house — backed by 30+ years in the field.</p><a href="#" class="btn-green"
+            style="margin-top:28px;display:inline-flex">Request a Proposal →</a>
+        </div>
+        <div class="why-grid">
+          <div class="why-card">
+            <div class="why-num-badge">01</div>
+            <div class="why-body">
+              <div class="why-title">Technical Depth In-House</div>
+              <div class="why-text">Real MEP and DG expertise — not subcontracted. Faster resolution times and deeper
+                asset understanding than any generic FM firm.</div>
+            </div>
+          </div>
+          <div class="why-card">
+            <div class="why-num-badge">02</div>
+            <div class="why-body">
+              <div class="why-title">Single-Vendor Advantage</div>
+              <div class="why-text">One contract covers MEP O&M, generator AMC, energy management, compliance — reducing
+                vendor fragmentation and cost.</div>
+            </div>
+          </div>
+          <div class="why-card">
+            <div class="why-num-badge">03</div>
+            <div class="why-body">
+              <div class="why-title">Digital FM Platform</div>
+              <div class="why-text">Our proprietary in-house FM software tracks work orders, preventive maintenance,
+                SLAs, and compliance documentation in real time.</div>
+            </div>
+          </div>
+          <div class="why-card">
+            <div class="why-num-badge">04</div>
+            <div class="why-body">
+              <div class="why-title">30 Years Track Record</div>
+              <div class="why-text">From Google to Prestige Group to Airports Authority — our portfolio speaks to the
+                trust of India's most demanding clients.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="sec sec-alt">
+      <div style="display:grid;grid-template-columns:300px 1fr;gap:64px">
+        <div>
+          <div class="sec-tag">FAQ</div>
+          <h2 class="sec-h">Facility Management <span class="accent">FAQs</span></h2>
+          <div class="divider-line"></div>
+          <p style="font-size:13.5px;color:var(--text-light);margin-top:18px;line-height:1.7">Still have questions? <a
+              href="https://www.apollopowersystems.com/contact-us/" style="color:var(--green);font-weight:600">Contact
+              us →</a></p>
+        </div>
+        <div class="faq-wrap">
+          <div class="faq-item"><button class="faq-q" onclick="faq(this)">What does Apollo's Integrated Facility
+              Management cover?<div class="faq-toggle">+</div></button>
+            <div class="faq-a">Apollo's IFMS covers all hard services (MEP systems, generator AMC, electrical
+              maintenance), soft services (housekeeping, waste management, landscaping), compliance management, energy
+              auditing, and reporting via our in-house digital FM platform — all under a single SLA.</div>
+          </div>
+          <div class="faq-item"><button class="faq-q" onclick="faq(this)">Do you deploy dedicated on-site teams at the
+              facility?<div class="faq-toggle">+</div></button>
+            <div class="faq-a">Yes. Depending on facility size and SLA requirements, Apollo deploys dedicated on-site
+              facility managers, engineers, and technicians. We also offer periodic visit contracts for smaller
+              facilities. Our workforce comprises 3,500+ trained individuals across India.</div>
+          </div>
+          <div class="faq-item"><button class="faq-q" onclick="faq(this)">How is Apollo FM different from other facility
+              management companies?<div class="faq-toggle">+</div></button>
+            <div class="faq-a">Unlike generic FM companies, Apollo has in-house MEP contracting, generator servicing,
+              and electrical expertise built over 30+ years. This means we don't subcontract critical technical work —
+              resulting in faster resolution times, better asset understanding, and true single-vendor accountability.
+            </div>
+          </div>
+          <div class="faq-item"><button class="faq-q" onclick="faq(this)">What sectors and industries does Apollo FM
+              serve?<div class="faq-toggle">+</div></button>
+            <div class="faq-a">We serve IT parks and technology campuses, commercial offices, hospitals and healthcare
+              facilities, manufacturing plants, retail and hospitality, educational institutions, airports, and real
+              estate developments. Current clients include Google, Prestige Group, and Airports Authority of India.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ── STICKY FLOAT ── -->
+  <!-- removed -->
+
+  <script>
+    function show(id, btn) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('on'));
+      document.querySelectorAll('.sw-btn').forEach(b => b.classList.remove('on'));
+      document.getElementById('p-' + id).classList.add('on');
+      btn.classList.add('on');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function faq(btn) {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      const wrap = item.closest('.faq-wrap');
+      if (wrap) wrap.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+  </script>
+</body>
+
+</html>
